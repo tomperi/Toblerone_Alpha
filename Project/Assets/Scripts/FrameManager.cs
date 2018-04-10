@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class FrameManager : MonoBehaviour
 {
-
 
     //Initial values that are defined in the heirarchy
     public int rows, cols;
@@ -13,7 +10,6 @@ public class FrameManager : MonoBehaviour
     public int initialPlayerFrameColumn;
     public int initialEmptyFrameRow;
     public int initialEmptyFrameColumn;
-
 
     //Game Objects that need to be defined in the heirarchy
     public GameObject player;
@@ -23,8 +19,6 @@ public class FrameManager : MonoBehaviour
     private position activeFrame;
     private position emptyFrame;
     private NavMeshAgent agent;
-
-
 
     public struct position
     {
@@ -66,11 +60,22 @@ public class FrameManager : MonoBehaviour
     private void initFrameArray()
     {
         frames = new GameObject[rows + 2, cols + 2];
+        GameObject currentFrame;
+        Frame currentFrameScript;
+
         for (int i = 1; i <= rows; i++)
         {
             for (int j = 1; j <= cols; j++)
             {
-                frames[i, j] = GameObject.Find("Frame" + (i - 1) + (j - 1));
+                currentFrame = GameObject.Find("Frame" + (i - 1) + (j - 1));
+                frames[i, j] = currentFrame;
+                // Set the position in the frame script
+                currentFrameScript = currentFrame.GetComponentInChildren<Frame>();
+                if(currentFrameScript != null)
+                {
+                    currentFrameScript.currentRow = i;
+                    currentFrameScript.currentCol = j;
+                }
             }
         }
 
@@ -87,7 +92,7 @@ public class FrameManager : MonoBehaviour
             if (isActiveFrame(row, col))
             {
                 SwitchPlayerPosition(row, col);
-                SwitchActiveFramePositionToEmptyFramePosition();
+                SwitchActiveFrame(emptyFrame.row, emptyFrame.col);
                 //Debug.Log("Move player!");
             }
 
@@ -97,10 +102,10 @@ public class FrameManager : MonoBehaviour
         
     }
 
-    public void SwitchActiveFramePositionToEmptyFramePosition()
+    public void SwitchActiveFrame(int row, int col)
     {
-        activeFrame.row = emptyFrame.row;
-        activeFrame.col = emptyFrame.col;
+        activeFrame.row = row;
+        activeFrame.col = col;
     }
 
     public void SwitchFramePositionWithEmptyFramePosition(int row, int col)

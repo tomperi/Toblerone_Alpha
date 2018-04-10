@@ -5,13 +5,19 @@ public class PlayerController : MonoBehaviour {
 
 	public Camera cam;
 	public NavMeshAgent agent;
+    public FrameManager frameManager;
 
-    NavMeshPath currentPath;
+    private NavMeshPath currentPath;
+    public LayerMask layerMask;
 
     private void Start()
     {
         currentPath = new NavMeshPath();
-        agent.updateRotation = false;   
+
+        // Prevents the agent from rotating 
+        agent.updateRotation = false;  
+        
+        // Take the layer mask from the frame manager
     }
 
     void Update () 
@@ -21,11 +27,12 @@ public class PlayerController : MonoBehaviour {
 			Ray ray = cam.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 
-			if (Physics.Raycast (ray, out hit)) 
+			if (Physics.Raycast (ray, out hit, 10000f, layerMask)) 
 			{
 				//agent.SetDestination (hit.point);
                 //Debug.Log(hit.point);
                 agent.CalculatePath(hit.point, currentPath);
+                //Debug.Log(currentPath.status);
                 if (currentPath.status == NavMeshPathStatus.PathComplete)
                 {
                     agent.SetPath(currentPath);

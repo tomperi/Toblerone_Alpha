@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Frame : MonoBehaviour {
+public class Frame : MonoBehaviour
+{
 
+    public int currentRow;
+    public int currentCol;
 
-	void Start () 
+    void Start () 
 	{
+
 	}
 
 	void Update () 
@@ -18,4 +20,12 @@ public class Frame : MonoBehaviour {
 			this.GetComponent<Transform> ().position = NewPosition;
 		}
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "player")
+        {
+            
+        }
+    }
 }
