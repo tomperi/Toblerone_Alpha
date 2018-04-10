@@ -6,6 +6,8 @@ public class Frame : MonoBehaviour
     public int currentRow;
     public int currentCol;
 
+    public FrameManager frameManager;
+
     void Start () 
 	{
 
@@ -23,9 +25,10 @@ public class Frame : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "player")
+        if(other.gameObject.tag == "Player")
         {
-            
+            frameManager.SwitchActiveFrame(currentRow, currentCol);
+            Debug.Log("Current active frame is " + currentRow + ", " + currentCol);
         }
     }
 }

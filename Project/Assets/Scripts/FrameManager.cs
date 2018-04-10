@@ -60,22 +60,15 @@ public class FrameManager : MonoBehaviour
     private void initFrameArray()
     {
         frames = new GameObject[rows + 2, cols + 2];
-        GameObject currentFrame;
-        Frame currentFrameScript;
 
         for (int i = 1; i <= rows; i++)
         {
             for (int j = 1; j <= cols; j++)
             {
-                currentFrame = GameObject.Find("Frame" + (i - 1) + (j - 1));
-                frames[i, j] = currentFrame;
+                GameObject currentFrameObject = GameObject.Find("Frame" + (i - 1) + (j - 1));
+                frames[i, j] = currentFrameObject;
                 // Set the position in the frame script
-                currentFrameScript = currentFrame.GetComponentInChildren<Frame>();
-                if(currentFrameScript != null)
-                {
-                    currentFrameScript.currentRow = i;
-                    currentFrameScript.currentCol = j;
-                }
+                setFramePosition(currentFrameObject, i, j);
             }
         }
 
@@ -119,6 +112,8 @@ public class FrameManager : MonoBehaviour
 
         frames[row, col] = currentEmptyFrame;
         frames[emptyFrame.row, emptyFrame.col] = frameToMove;
+        setFramePosition(frameToMove, emptyFrame.row, emptyFrame.col);
+
         emptyFrame.row = row;
         emptyFrame.col = col;
     }
@@ -134,5 +129,15 @@ public class FrameManager : MonoBehaviour
     private bool isActiveFrame(int row, int col)
     {
         return row == activeFrame.row && col == activeFrame.col;
+    }
+
+    private void setFramePosition(GameObject frame, int row, int col)
+    {
+        Frame currentFrameScript = frame.GetComponentInChildren<Frame>();
+        if (currentFrameScript != null)
+        {
+            currentFrameScript.currentRow = row;
+            currentFrameScript.currentCol = col;
+        }
     }
 }
