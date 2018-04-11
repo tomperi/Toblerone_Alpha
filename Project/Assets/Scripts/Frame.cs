@@ -28,7 +28,7 @@ public class Frame : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             frameManager.SwitchActiveFrame(currentRow, currentCol);
-            Debug.Log("Current active frame is " + currentRow + ", " + currentCol);
+            //Debug.Log("Current active frame is " + currentRow + ", " + currentCol);
         }
     }
 }

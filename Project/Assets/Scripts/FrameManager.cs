@@ -18,43 +18,28 @@ public class FrameManager : MonoBehaviour
     private GameObject[,] frames;
     private position activeFrame;
     private position emptyFrame;
-    private NavMeshAgent agent;
+    private PlayerController playerController;
 
     public struct position
     {
         public int row, col;
     }
 
+    public enum Direction
+    { 
+        Up, Down, Left, Right
+    };
+
     void Start()
     {
         initFrameArray();
 
-        agent = player.GetComponent<NavMeshAgent>();
+        playerController = player.GetComponent<PlayerController>();
     }
 
     void Update()
     {
 
-        // Move frame
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            switchEmptyFrameLocation(emptyFrame.row + 1, emptyFrame.col);
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            switchEmptyFrameLocation(emptyFrame.row, emptyFrame.col - 1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            switchEmptyFrameLocation(emptyFrame.row - 1, emptyFrame.col);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            switchEmptyFrameLocation(emptyFrame.row, emptyFrame.col + 1);
-        }
     }
 
     private void initFrameArray()
@@ -78,7 +63,7 @@ public class FrameManager : MonoBehaviour
         emptyFrame.col = initialEmptyFrameColumn + 1;
     }
 
-    public void switchEmptyFrameLocation(int row, int col)
+    public void SwitchEmptyFrameLocation(int row, int col)
     {
         if (frames[row, col] != null)
         {
@@ -93,6 +78,25 @@ public class FrameManager : MonoBehaviour
 
         }
         
+    }
+
+    public void SwitchEmptyFrameLocation(Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                SwitchEmptyFrameLocation(emptyFrame.row + 1, emptyFrame.col);
+                break;
+            case Direction.Down:
+                SwitchEmptyFrameLocation(emptyFrame.row - 1, emptyFrame.col);
+                break;
+            case Direction.Left:
+                SwitchEmptyFrameLocation(emptyFrame.row, emptyFrame.col + 1);
+                break;
+            case Direction.Right:
+                SwitchEmptyFrameLocation(emptyFrame.row, emptyFrame.col - 1);
+                break;
+        }
     }
 
     public void SwitchActiveFrame(int row, int col)
@@ -120,10 +124,10 @@ public class FrameManager : MonoBehaviour
 
     public void SwitchPlayerPosition(int row, int col)
     {
-        agent.enabled = false;
+        playerController.StopNavAgent();
         Vector3 playerRelativePosition = frames[row, col].transform.position - player.gameObject.transform.position;
         player.gameObject.transform.position = frames[emptyFrame.row, emptyFrame.col].gameObject.transform.position - playerRelativePosition;
-        agent.enabled = true;
+        playerController.StartNavAgent();
     }
 
     private bool isActiveFrame(int row, int col)
