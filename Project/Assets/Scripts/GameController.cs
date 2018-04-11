@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     public FrameManager frameManager;
     public LayerMask playerLayerMask;
     public LayerMask frameLayerMask;
+    public LayerMask floorLayerMask;
 
     private bool zoomIn;
 
@@ -40,6 +41,26 @@ public class GameController : MonoBehaviour {
             else
             {
                 // Use raycast to change frames
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (!zoomIn)
+            {
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+
+                if (Physics.Raycast(ray, out hit, 10000f, floorLayerMask))
+                {
+                    GameObject frame = hit.transform.parent.gameObject;
+
+                    if (frame != null)
+                    {
+                        frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+                    }
+                }
             }
         }
 
