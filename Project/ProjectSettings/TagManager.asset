@@ -18,7 +18,11 @@ TagManager:
   - Walls
   - Player
   - Floor
+<<<<<<< HEAD
   - Laser
+=======
+  - 
+>>>>>>> 1024912be0f5f8dc538298ccd0555c17e09ab704
   - 
   - 
   - 

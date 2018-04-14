@@ -10,7 +10,10 @@ public class GameController : MonoBehaviour {
     public LayerMask playerLayerMask;
     public LayerMask frameLayerMask;
     public LayerMask floorLayerMask;
+<<<<<<< HEAD
     public bool isPlayerNotInLevel;
+=======
+>>>>>>> 1024912be0f5f8dc538298ccd0555c17e09ab704
 
     private bool zoomIn;
 
@@ -53,7 +56,10 @@ public class GameController : MonoBehaviour {
             }
         }
 
+<<<<<<< HEAD
         //rotate frame
+=======
+>>>>>>> 1024912be0f5f8dc538298ccd0555c17e09ab704
         if (Input.GetMouseButtonDown(1))
         {
             if (!zoomIn)
@@ -69,7 +75,10 @@ public class GameController : MonoBehaviour {
                     if (frame != null)
                     {
                         frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+<<<<<<< HEAD
                         laser.ShootLaser();
+=======
+>>>>>>> 1024912be0f5f8dc538298ccd0555c17e09ab704
                     }
                 }
             }
