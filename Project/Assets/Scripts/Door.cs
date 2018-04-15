@@ -7,17 +7,24 @@ public class Door : MonoBehaviour
 
     public GameObject door;
     public bool[] colliders = new bool[2];
+    private LayerMask openDoorLayerMask;
+    private LayerMask closedDoorLayerMask;
 
     Animator animator;
     NavMeshObstacle obstacle;
     bool doorOpen;
 
-	void Start ()
-	{
+
+    void Start()
+    {
         doorOpen = false;
         animator = door.GetComponent<Animator>();
-	    obstacle = door.GetComponent<NavMeshObstacle>();
-	}
+        obstacle = door.GetComponent<NavMeshObstacle>();
+
+        openDoorLayerMask = LayerMask.NameToLayer("OpenDoors");
+        closedDoorLayerMask = LayerMask.NameToLayer("ClosedDoors");
+        setAllChildLayers(closedDoorLayerMask);
+    }
 
     void Update()
     {
@@ -28,6 +35,7 @@ public class Door : MonoBehaviour
                 doorOpen = true;
                 obstacle.enabled = false;
                 Doors("Open");
+                setAllChildLayers(openDoorLayerMask);
             }
         }
         else if (doorOpen)
@@ -35,6 +43,7 @@ public class Door : MonoBehaviour
             doorOpen = false;
             obstacle.enabled = true;
             Doors("Close");
+            setAllChildLayers(closedDoorLayerMask);
         }
 
 
@@ -43,5 +52,16 @@ public class Door : MonoBehaviour
     void Doors(string direction)
     {
         animator.SetTrigger(direction);
+    }
+
+    private void setAllChildLayers(int mask)
+    {
+        gameObject.layer = mask;
+
+        foreach (Transform child in gameObject.transform)
+        {
+            child.gameObject.layer = mask;
+        }
+
     }
 }

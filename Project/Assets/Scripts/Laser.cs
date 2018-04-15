@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public LayerMask wallsLayerMask;
+    public LayerMask allButOpenDoorLayerMask;
     public bool isTargetHit;
 
     public float temp;
@@ -23,6 +23,8 @@ public class Laser : MonoBehaviour
         lineRenderer.positionCount = 1;
         lineRenderer.SetPositions(linePositions);
         isTargetHit = false;
+
+        
     }
 
     public void ShootLaser()
@@ -48,17 +50,16 @@ public class Laser : MonoBehaviour
 
     IEnumerator shootLaser()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(1f);
 
         RaycastHit hit;
         
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f/*, wallsLayerMask*/))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f, allButOpenDoorLayerMask))
         {
             Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
 
             if (hit.transform.GetComponent<Mirror>() != null)
             {
-                //Debug.Log("hit another mirror");
                 hit.transform.GetComponent<Mirror>().OnMirrorLaserHit();
             }
 

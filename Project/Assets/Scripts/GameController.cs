@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour {
                     if (frame != null)
                     {
                         frame.transform.Rotate(new Vector3(0f, 90f, 0f));
-                        laser.ShootLaser();
+                        StartCoroutine(waitAndShootLaser());
                     }
                 }
             }
@@ -79,25 +79,25 @@ public class GameController : MonoBehaviour {
         if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!zoomIn))
         {
             frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Up);
-            laser.ShootLaser();
+            StartCoroutine(waitAndShootLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!zoomIn))
         {
             frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Right);
-            laser.ShootLaser();
+            StartCoroutine(waitAndShootLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!zoomIn))
         {
             frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Down);
-            laser.ShootLaser();
+            StartCoroutine(waitAndShootLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!zoomIn))
         {
             frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Left);
-            laser.ShootLaser();
+            StartCoroutine(waitAndShootLaser());
         }
     }
 
@@ -124,7 +124,10 @@ public class GameController : MonoBehaviour {
     IEnumerator waitAndShootLaser()
     {
         yield return new WaitForSeconds(0.1f);
-        laser.ShootLaser();
+        if (laser != null)
+        {
+            laser.ShootLaser();
+        }
     }
 
 
