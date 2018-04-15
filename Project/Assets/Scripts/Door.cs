@@ -1,38 +1,43 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
-public class Door : MonoBehaviour {
+public class Door : MonoBehaviour
+{
+
+    public GameObject door;
+    public bool[] colliders = new bool[2];
 
     Animator animator;
+    NavMeshObstacle obstacle;
     bool doorOpen;
 
-	void Start () {
+	void Start ()
+	{
         doorOpen = false;
-        animator = GetComponent<Animator>();
-	}
-	
-	void Update () {
-		
+        animator = door.GetComponent<Animator>();
+	    obstacle = door.GetComponent<NavMeshObstacle>();
 	}
 
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.gameObject.tag == "Door")
+        if (colliders[0] && colliders[1])
         {
-            doorOpen = true;
-            Doors("Open");
-            //Debug.Log("Open");
+            if (!doorOpen)
+            {
+                doorOpen = true;
+                obstacle.enabled = false;
+                Doors("Open");
+            }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if ((doorOpen) && (other.gameObject.tag == "Door")) 
+        else if (doorOpen)
         {
             doorOpen = false;
+            obstacle.enabled = true;
             Doors("Close");
-            //Debug.Log("Close");
         }
+
+
     }
 
     void Doors(string direction)
