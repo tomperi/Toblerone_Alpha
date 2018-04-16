@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,18 +12,18 @@ public class Door : MonoBehaviour
 
     Animator animator;
     NavMeshObstacle obstacle;
-    bool doorOpen;
+    public bool doorOpen;
 
 
     void Start()
     {
-        doorOpen = false;
         animator = door.GetComponent<Animator>();
         obstacle = door.GetComponent<NavMeshObstacle>();
 
         openDoorLayerMask = LayerMask.NameToLayer("OpenDoors");
         closedDoorLayerMask = LayerMask.NameToLayer("ClosedDoors");
         setAllChildLayers(closedDoorLayerMask);
+        
     }
 
     void Update()
@@ -32,26 +32,68 @@ public class Door : MonoBehaviour
         {
             if (!doorOpen)
             {
-                doorOpen = true;
-                obstacle.enabled = false;
-                Doors("Open");
-                setAllChildLayers(openDoorLayerMask);
+                OpenDoors();
             }
         }
         else if (doorOpen)
         {
-            doorOpen = false;
-            obstacle.enabled = true;
-            Doors("Close");
-            setAllChildLayers(closedDoorLayerMask);
+            CloseDoors();
         }
 
+        if (doorOpen)
+        {
+//            makeSureDoorIsOpen();
+        }
+        else
+        {
+//            makeSureDoorIsClose();
+        }
+    }
 
+    private void makeSureDoorIsClose()
+    {
+        Color currentColor = door.GetComponent<MeshRenderer>().material.color;
+        if ((currentColor.a >= 0) && (currentColor.a <= 1))
+        {
+            currentColor.a -= 0.02f;
+            door.GetComponent<MeshRenderer>().materials.First().color = currentColor;
+        }
+    }
+
+    private void makeSureDoorIsOpen()
+    {
+        Color currentColor = door.GetComponent<MeshRenderer>().material.color;
+        if ((currentColor.a >= 0) && (currentColor.a <= 1))
+        {
+            currentColor.a += 0.02f;
+            door.GetComponent<MeshRenderer>().materials.First().color = currentColor;
+        }
+    }
+
+    public void OpenDoors()
+    {
+        doorOpen = true;
+        obstacle.enabled = false;
+        //        door.GetComponent<MeshRenderer>().enabled = false;
+        animator.ResetTrigger("Close");
+        animator.SetTrigger("Open");
+        setAllChildLayers(openDoorLayerMask);
+    }
+
+    public void CloseDoors()
+    {
+        doorOpen = false;
+        obstacle.enabled = true;
+        //        door.GetComponent<MeshRenderer>().enabled = true;
+        animator.ResetTrigger("Open");
+        animator.SetTrigger("Close");
+        setAllChildLayers(closedDoorLayerMask);
     }
 
     void Doors(string direction)
     {
         animator.SetTrigger(direction);
+        Debug.Log(this.gameObject.name + " " + direction);
     }
 
     private void setAllChildLayers(int mask)
