@@ -63,7 +63,7 @@ public class Laser : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f, allButOpenDoorLayerMask))
         {
-            //Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));////
+            //Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));
             Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
             if (hit.transform.GetComponent<Mirror>() != null)
             {
