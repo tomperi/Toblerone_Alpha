@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour {
         zoomInOut();
 
         laser = FindObjectOfType<Laser>();
-        StartCoroutine(waitAndShootLaser());
+        StartCoroutine(shootLaserAtStart());
     }
     
     void Update()
@@ -121,9 +121,23 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    IEnumerator shootLaserAtStart()
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (laser != null)
+        {
+            laser.ShootLaser();
+        }
+    }
+
     IEnumerator waitAndShootLaser()
     {
-        yield return new WaitForSeconds(0.1f);
+        if (laser != null)
+        {
+            laser.resetLaser();
+        }
+
+        yield return new WaitForSeconds(0.3f);
         if (laser != null)
         {
             laser.ShootLaser();

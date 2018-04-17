@@ -26,14 +26,15 @@ public class Mirror : MonoBehaviour
 
     IEnumerator waitBeforeCastingRay()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         RaycastHit hit;
 
         //transform.Rotate(new Vector3(0f, 0f, 0f));
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f, laser.allButOpenDoorLayerMask))
         {
+            Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));////
             //Debug.Log("Mirror hit something");
             Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
             //Vector3 point = hit.transform.position;

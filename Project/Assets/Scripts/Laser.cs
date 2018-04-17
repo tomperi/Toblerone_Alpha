@@ -36,7 +36,14 @@ public class Laser : MonoBehaviour
         }
     }
 
-    private void resetLaser()
+    public void levelHitTarget()
+    {
+        isTargetHit = true;
+        lineRenderer.positionCount = 0;
+
+    }
+
+    public void resetLaser()
     {
         updateOriginPosition();
         Vector3[] newLinePositions = new Vector3[1];
@@ -53,11 +60,11 @@ public class Laser : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         RaycastHit hit;
-        
+
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f, allButOpenDoorLayerMask))
         {
+            //Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));////
             Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
-
             if (hit.transform.GetComponent<Mirror>() != null)
             {
                 hit.transform.GetComponent<Mirror>().OnMirrorLaserHit();
