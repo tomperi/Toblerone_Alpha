@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
     public LayerMask frameLayerMask;
     public LayerMask floorLayerMask;
     public bool isPlayerNotInLevel;
+    public bool startZoomedIn;
 
     private bool zoomIn;
 
@@ -19,7 +20,7 @@ public class GameController : MonoBehaviour {
     
     void Start()
     {
-        zoomIn = !isPlayerNotInLevel;
+        zoomIn = !startZoomedIn;
         zoomInOut();
 
         laser = FindObjectOfType<Laser>();
