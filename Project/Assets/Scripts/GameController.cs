@@ -10,7 +10,9 @@ public class GameController : MonoBehaviour {
     public LayerMask playerLayerMask;
     public LayerMask frameLayerMask;
     public LayerMask floorLayerMask;
-    public bool isPlayerNotInLevel;
+    public bool allowZoomInOut;
+    public bool startZoomedOut;
+    public bool isPlayerInLevel;
 
     private bool zoomIn;
 
@@ -19,8 +21,8 @@ public class GameController : MonoBehaviour {
     
     void Start()
     {
-        zoomIn = !isPlayerNotInLevel;
-        zoomInOut();
+        zoomIn = startZoomedOut;
+        startZoomInOut();
 
         laser = FindObjectOfType<Laser>();
         StartCoroutine(shootLaserAtStart());
@@ -37,7 +39,7 @@ public class GameController : MonoBehaviour {
         //move player
         if (Input.GetMouseButtonDown(0))
         {
-            if (zoomIn)
+            if (zoomIn && isPlayerInLevel)
             {
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -103,13 +105,16 @@ public class GameController : MonoBehaviour {
 
     void zoomInOut()
     {
-        if (!isPlayerNotInLevel)
+        if (allowZoomInOut)
         {
             if (zoomIn)
             {
                 zoomOutCamera.SetActive(true);
                 zoomIn = false;
-                player.StopAtPlace();
+                if (isPlayerInLevel)
+                {
+                    player.StopAtPlace();
+                }
                 //Debug.Log("Zoom out");
             }
             else
@@ -118,6 +123,26 @@ public class GameController : MonoBehaviour {
                 zoomIn = true;
                 //Debug.Log("Zoom in");
             }
+        }
+    }
+
+    public void startZoomInOut()
+    {
+        if (zoomIn)
+        {
+            zoomOutCamera.SetActive(true);
+            zoomIn = false;
+            if (isPlayerInLevel)
+            {
+                player.StopAtPlace();
+            }
+            //Debug.Log("Zoom out");
+        }
+        else
+        {
+            zoomOutCamera.SetActive(false);
+            zoomIn = true;
+            //Debug.Log("Zoom in");
         }
     }
 
