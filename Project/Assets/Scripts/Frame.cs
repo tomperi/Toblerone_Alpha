@@ -6,11 +6,11 @@ public class Frame : MonoBehaviour
     public int currentRow;
     public int currentCol;
 
-    public FrameManager frameManager;
+    private FrameManager frameManager;
 
     void Start () 
 	{
-
+        frameManager = FindObjectOfType<FrameManager>();
 	}
 
 	void Update () 
