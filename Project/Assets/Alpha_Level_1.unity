@@ -890,6 +890,11 @@ MonoBehaviour:
   allowZoomInOut: 0
   startZoomedOut: 0
   isPlayerInLevel: 1
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e0f9b91faf1bb6bc4e6b321b4f30acdf77fcf7af
+>>>>>>> bb9f3ef50fd8ed832b9651e5d3a87dab0667f39f
 --- !u!4 &128588003
 Transform:
   m_ObjectHideFlags: 0
@@ -3481,7 +3486,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
+<<<<<<< HEAD
   m_Text: 'Move Grandma with the left mouse button
+=======
+<<<<<<< HEAD
+  m_Text: 'Move Grandma with the left mouse button
+=======
+  m_Text: 'Move grandma with the left mouse button
+>>>>>>> e0f9b91faf1bb6bc4e6b321b4f30acdf77fcf7af
+>>>>>>> bb9f3ef50fd8ed832b9651e5d3a87dab0667f39f
 
     And reach the exit'
 --- !u!222 &347501325
@@ -4102,7 +4115,15 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.36666667
   m_BuildHeightMesh: 0
+<<<<<<< HEAD
   m_NavMeshData: {fileID: 23800000, guid: 98143958b0057c44a91523ed4d889e9a, type: 2}
+=======
+<<<<<<< HEAD
+  m_NavMeshData: {fileID: 23800000, guid: 98143958b0057c44a91523ed4d889e9a, type: 2}
+=======
+  m_NavMeshData: {fileID: 23800000, guid: b88ea4bcdd922ab43a526f0b312f7d41, type: 2}
+>>>>>>> e0f9b91faf1bb6bc4e6b321b4f30acdf77fcf7af
+>>>>>>> bb9f3ef50fd8ed832b9651e5d3a87dab0667f39f
 --- !u!4 &661386172
 Transform:
   m_ObjectHideFlags: 0
