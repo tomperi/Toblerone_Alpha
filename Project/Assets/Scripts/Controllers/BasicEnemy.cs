@@ -22,13 +22,21 @@ public class BasicEnemy : MonoBehaviour
 
 	    if (distance <= lookRadius)
 	    {
-            GoToPosition(target.position);
-	        if (path.status == NavMeshPathStatus.PathComplete)
+	        agent.SetDestination(target.position);
+
+	        if (distance <= agent.stoppingDistance)
 	        {
-	            agent.SetPath(path);
-	        }
+	            // FaceTarget();
+            }
 	    }
 	}
+
+    private void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.y));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
 
     public void GoToPosition(Vector3 destination)
     {
