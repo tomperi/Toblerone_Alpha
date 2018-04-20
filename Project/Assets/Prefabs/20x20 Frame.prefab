@@ -2450,6 +2450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1109705076518932}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!114 &114122103285782404
@@ -3085,6 +3086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1649183905111246}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!114 &114186771276888730
@@ -3099,6 +3101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1213197776878938}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!114 &114191222096772758
@@ -7651,6 +7654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1548818567913058}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!114 &114942892369312112

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,6 +7,7 @@ public class Door : MonoBehaviour
 {
 
     public GameObject door;
+    public DoorColor color;
     public bool[] colliders = new bool[2];
     private LayerMask openDoorLayerMask;
     private LayerMask closedDoorLayerMask;
@@ -14,6 +16,10 @@ public class Door : MonoBehaviour
     NavMeshObstacle obstacle;
     public bool doorOpen;
 
+    public enum DoorColor
+    {
+        Red,Green,Blue,Yellow
+    };
 
     void Start()
     {

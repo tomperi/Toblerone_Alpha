@@ -20,7 +20,7 @@ public class DoorCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Door")
+        if (other.gameObject.tag == "Door" && other.transform.parent.gameObject.GetComponent<Door>().color == parent.color)
         {
             parent.colliders[colliderNumber] = true;
         }
@@ -29,7 +29,7 @@ public class DoorCollider : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Door")
+        if (other.gameObject.tag == "Door" && other.transform.parent.gameObject.GetComponent<Door>().color == parent.color)
         {
             parent.colliders[colliderNumber] = false;
         }
