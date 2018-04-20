@@ -10,11 +10,15 @@ public class laserEndPoint : MonoBehaviour {
     public Material notHitMaterial;
     public Material hitMaterial;
 
-	// Use this for initialization
-	void Start () {
+    private MoveToNextLevelScript moveToNextLevelScript;
+
+    // Use this for initialization
+    void Start () {
         wasHit = false;
         laser = FindObjectOfType<Laser>();
         GetComponent<Renderer>().material = notHitMaterial;
+
+        moveToNextLevelScript = FindObjectOfType<MoveToNextLevelScript>();
 	}
 	
 	public void OnHitTarget()
@@ -34,5 +38,7 @@ public class laserEndPoint : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.5f);
         laser.levelHitTarget();
+        yield return new WaitForSeconds(2f);
+        moveToNextLevelScript.OnLevelComplete();
     }
 }

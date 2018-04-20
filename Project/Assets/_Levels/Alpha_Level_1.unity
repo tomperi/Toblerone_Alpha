@@ -856,6 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 128588003}
   - component: {fileID: 128588002}
+  - component: {fileID: 128588004}
   m_Layer: 9
   m_Name: GameController
   m_TagString: Untagged
@@ -890,11 +891,6 @@ MonoBehaviour:
   allowZoomInOut: 0
   startZoomedOut: 0
   isPlayerInLevel: 1
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e0f9b91faf1bb6bc4e6b321b4f30acdf77fcf7af
->>>>>>> bb9f3ef50fd8ed832b9651e5d3a87dab0667f39f
 --- !u!4 &128588003
 Transform:
   m_ObjectHideFlags: 0
@@ -908,6 +904,17 @@ Transform:
   m_Father: {fileID: 1645593745}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128588004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 128588001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb0ed1e76e05342b27c68b91e44239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &139631743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,6 +2664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1227758895}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &277421867
@@ -2706,6 +2714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1298107}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!43 &280554710
@@ -3486,15 +3495,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-<<<<<<< HEAD
   m_Text: 'Move Grandma with the left mouse button
-=======
-<<<<<<< HEAD
-  m_Text: 'Move Grandma with the left mouse button
-=======
-  m_Text: 'Move grandma with the left mouse button
->>>>>>> e0f9b91faf1bb6bc4e6b321b4f30acdf77fcf7af
->>>>>>> bb9f3ef50fd8ed832b9651e5d3a87dab0667f39f
 
     And reach the exit'
 --- !u!222 &347501325
@@ -4002,6 +4003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 139631743}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &552223167
@@ -4115,15 +4117,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.36666667
   m_BuildHeightMesh: 0
-<<<<<<< HEAD
   m_NavMeshData: {fileID: 23800000, guid: 98143958b0057c44a91523ed4d889e9a, type: 2}
-=======
-<<<<<<< HEAD
-  m_NavMeshData: {fileID: 23800000, guid: 98143958b0057c44a91523ed4d889e9a, type: 2}
-=======
-  m_NavMeshData: {fileID: 23800000, guid: b88ea4bcdd922ab43a526f0b312f7d41, type: 2}
->>>>>>> e0f9b91faf1bb6bc4e6b321b4f30acdf77fcf7af
->>>>>>> bb9f3ef50fd8ed832b9651e5d3a87dab0667f39f
 --- !u!4 &661386172
 Transform:
   m_ObjectHideFlags: 0
@@ -7667,6 +7661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 950562887}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &1012978561

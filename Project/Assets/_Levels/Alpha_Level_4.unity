@@ -2273,6 +2273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 128588003}
   - component: {fileID: 128588002}
+  - component: {fileID: 128588004}
   m_Layer: 9
   m_Name: GameController
   m_TagString: Untagged
@@ -2320,6 +2321,17 @@ Transform:
   m_Father: {fileID: 1645593745}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128588004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 128588001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb0ed1e76e05342b27c68b91e44239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &129683275
 GameObject:
   m_ObjectHideFlags: 0
@@ -6064,6 +6076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1227758895}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &277421867
@@ -6113,6 +6126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1298107}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!43 &280554710
@@ -8999,6 +9013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 139631743}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &482379598
@@ -9919,6 +9934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 642027008}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &552223167
@@ -10002,6 +10018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1538983070}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &578181329
@@ -11820,6 +11837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 178758912}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &672391394
@@ -17492,6 +17510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 950562887}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &1012792700
@@ -19159,6 +19178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 485274567}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &1092383344
@@ -23015,6 +23035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1155554683}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &1494042245
@@ -29406,6 +29427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 955784600}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &2008190276
@@ -29544,6 +29566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1225004737}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!1 &2019175297
@@ -30336,6 +30359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 2042246149}
+  color: 0
   colliders: 0000
   doorOpen: 0
 --- !u!43 &2136827894
