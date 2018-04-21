@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileSpawnManager : MonoBehaviour
+public class ProjectileManager : MonoBehaviour
 {
 
     public GameObject spawner;
     public GameObject projectile;
     private bool projectileIsAlive;
+    
     // Use this for initialization
     void Start()
     {

@@ -16,14 +16,11 @@ public class FrameManager : MonoBehaviour
 
     //Internal values that are used in other files
     private GameObject[,] frames;
-    private position activeFrame;
-    private position emptyFrame;
+    private Position activeFrame;
+    private Position emptyFrame;
     private PlayerController playerController;
 
-    public struct position
-    {
-        public int row, col;
-    }
+
 
     public enum Direction
     { 

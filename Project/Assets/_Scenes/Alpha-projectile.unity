@@ -3875,25 +3875,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1668768044344078, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65796186102510478, guid: 9463183ed0029034da252e3a0d187a8a,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 65796186102510478, guid: 9463183ed0029034da252e3a0d187a8a,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65796186102510478, guid: 9463183ed0029034da252e3a0d187a8a,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
   m_IsPrefabParent: 0
@@ -15527,7 +15508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770924c6d8a78fa41bed37d6ac146fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 2
+  rows: 3
   cols: 3
   initialPlayerFrameRow: 1
   initialPlayerFrameColumn: 1
@@ -56775,7 +56756,7 @@ GameObject:
   - component: {fileID: 1399927897}
   - component: {fileID: 1399927898}
   m_Layer: 0
-  m_Name: ProjectileSpawnManager
+  m_Name: ProjectileManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56807,6 +56788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 2029372378}
   projectile: {fileID: 1668768044344078, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
+  projectileIsAlive: 0
 --- !u!1 &1402547840
 GameObject:
   m_ObjectHideFlags: 0
