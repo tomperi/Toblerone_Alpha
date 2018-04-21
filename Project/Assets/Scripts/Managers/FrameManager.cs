@@ -20,13 +20,6 @@ public class FrameManager : MonoBehaviour
     private Position emptyFrame;
     private PlayerController playerController;
 
-
-
-    public enum Direction
-    { 
-        Up, Down, Left, Right
-    };
-
     void Start()
     {
         initFrameArray();

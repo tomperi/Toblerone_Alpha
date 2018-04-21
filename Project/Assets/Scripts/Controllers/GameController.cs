@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour {
         }
 
         //rotate frame
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)) // Mouse Right Click
         {
             if (!zoomIn)
             {
@@ -73,8 +73,16 @@ public class GameController : MonoBehaviour {
                     if (frame != null)
                     {
                         frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+                        foreach (Transform transformChild in frame.transform) // Messy, needs to fix later! ~ Amir
+                        {
+                            if(transformChild.name == "ShadowProjectile(Clone)")
+                            {
+                                transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
+                            }
+                        }
                         StartCoroutine(waitAndShootLaser());
                     }
+                    
                 }
             }
         }
@@ -82,25 +90,25 @@ public class GameController : MonoBehaviour {
         // Move frame
         if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!zoomIn))
         {
-            frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Up);
+            frameManager.SwitchEmptyFrameLocation(Direction.Up);
             StartCoroutine(waitAndShootLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!zoomIn))
         {
-            frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Right);
+            frameManager.SwitchEmptyFrameLocation(Direction.Right);
             StartCoroutine(waitAndShootLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!zoomIn))
         {
-            frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Down);
+            frameManager.SwitchEmptyFrameLocation(Direction.Down);
             StartCoroutine(waitAndShootLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!zoomIn))
         {
-            frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Left);
+            frameManager.SwitchEmptyFrameLocation(Direction.Left);
             StartCoroutine(waitAndShootLaser());
         }
 

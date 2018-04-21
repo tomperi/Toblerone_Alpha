@@ -16,11 +16,6 @@ public class Door : MonoBehaviour
     NavMeshObstacle obstacle;
     public bool doorOpen;
 
-    public enum DoorColor
-    {
-        Red,Green,Blue,Black
-    };
-
     void Start()
     {
         animator = door.GetComponent<Animator>();
