@@ -24,7 +24,7 @@ public class DoorCollider : MonoBehaviour
         {
             parent.colliders[colliderNumber] = true;
         }
-        //Debug.Log("Enter " + colliderNumber + " " + other.name);
+        // Debug.Log("Enter " + colliderNumber + " " + other.name);
     }
 
     void OnTriggerExit(Collider other)
@@ -33,7 +33,7 @@ public class DoorCollider : MonoBehaviour
         {
             parent.colliders[colliderNumber] = false;
         }
-        //Debug.Log("Exit " + colliderNumber + " " + other.name);
+        // Debug.Log("Exit " + colliderNumber + " " + other.name);
     }
 
 }

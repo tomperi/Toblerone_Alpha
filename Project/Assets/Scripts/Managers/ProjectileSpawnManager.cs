@@ -33,8 +33,8 @@ public class ProjectileSpawnManager : MonoBehaviour
     IEnumerator SpawnProjectileCoroutine()
     {
         yield return new WaitForSeconds(2.0f);
-        Instantiate(projectile);
-        projectile.transform.position = new Vector3(spawner.transform.position.x + 3, spawner.transform.position.y, spawner.transform.position.z);
+        projectile = Instantiate(projectile);
+        projectile.transform.position = new Vector3(spawner.transform.position.x + 3, 4, spawner.transform.position.z);
         projectile.SetActive(true);
         
     }
