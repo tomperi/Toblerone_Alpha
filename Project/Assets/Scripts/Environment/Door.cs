@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
 
     public enum DoorColor
     {
-        Red,Green,Blue,Yellow
+        Red,Green,Blue,Black
     };
 
     void Start()
