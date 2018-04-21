@@ -23,9 +23,11 @@ public class GameController : MonoBehaviour {
     {
         zoomIn = startZoomedOut;
         startZoomInOut();
-
         laser = FindObjectOfType<Laser>();
-        StartCoroutine(shootLaserAtStart());
+        if (laser != null)
+        {
+            StartCoroutine(shootLaserAtStart());
+        }
     }
     
     void Update()

@@ -5059,7 +5059,7 @@ Transform:
   m_Children:
   - {fileID: 392250691}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &127602463
 NavMeshAgent:
@@ -49278,7 +49278,7 @@ Transform:
   - {fileID: 431402465}
   - {fileID: 2029431535}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1231039193
 Mesh:
@@ -50299,11 +50299,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!4 &1248817216 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1646877125}
 --- !u!1 &1259067435
 GameObject:
   m_ObjectHideFlags: 0
@@ -61602,7 +61597,7 @@ Transform:
   m_LocalScale: {x: 2, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 1516535407}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1503156003
 MeshRenderer:
@@ -61835,7 +61830,6 @@ Transform:
   - {fileID: 837115056}
   - {fileID: 85354677}
   - {fileID: 2029372379}
-  - {fileID: 1248817216}
   - {fileID: 1503156002}
   m_Father: {fileID: 1229596702}
   m_RootOrder: 5
@@ -67024,52 +67018,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1646877125
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1516535407}
-    m_Modifications:
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 5.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.3000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.014871267
-      objectReference: {fileID: 0}
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.97649723
-      objectReference: {fileID: 0}
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.2149917
-      objectReference: {fileID: 0}
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.0032741504
-      objectReference: {fileID: 0}
-    - target: {fileID: 4734147787199104, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1668768044344078, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-      propertyPath: m_Name
-      value: ShadowProjectile
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
-  m_IsPrefabParent: 0
 --- !u!43 &1649421198
 Mesh:
   m_ObjectHideFlags: 0
@@ -79455,6 +79403,7 @@ GameObject:
   - component: {fileID: 2029372379}
   - component: {fileID: 2029372380}
   - component: {fileID: 2029372381}
+  - component: {fileID: 2029372382}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -79536,6 +79485,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &2029372382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029372378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5bd170ef60071438f0132974c39e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
 --- !u!4 &2029431535
 Transform:
   m_ObjectHideFlags: 0
