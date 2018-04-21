@@ -14,31 +14,11 @@ public class ProjectileCollider : MonoBehaviour {
 		
 	}
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("hi");
         Debug.Log(other.gameObject.name);
-        if (other.gameObject.layer == LayerMask.NameToLayer("ClosedDoors"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void OnCollisionStay(Collision other)
-    {
-        Debug.Log("hi");
-        Debug.Log(other.gameObject.name);
-        if (other.gameObject.layer == LayerMask.NameToLayer("ClosedDoors"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        Debug.Log("hi");
-        Debug.Log(other.gameObject.name);
-        if (other.gameObject.layer == LayerMask.NameToLayer("ClosedDoors"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("ClosedDoors") || other.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
             Destroy(this.gameObject);
         }
