@@ -47,7 +47,7 @@ public class FrameManager : MonoBehaviour
         {
             for (int j = 1; j <= cols; j++)
             {
-                GameObject currentFrameObject = GameObject.Find("Frame" + (i - 1) + (j - 1));
+                GameObject currentFrameObject = getFrameGameObject(i,j);
                 frames[i, j] = currentFrameObject;
                 // Set the position in the frame script
                 setFramePosition(currentFrameObject, i, j);
@@ -140,5 +140,10 @@ public class FrameManager : MonoBehaviour
             currentFrameScript.currentRow = row;
             currentFrameScript.currentCol = col;
         }
+    }
+
+    public GameObject getFrameGameObject(int row, int col)
+    {
+        return GameObject.Find("Frame" + (row - 1) + (col - 1));
     }
 }

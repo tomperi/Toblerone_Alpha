@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour {
             StartCoroutine(shootLaserAtStart());
         }
     }
-    
+
     void Update()
     {
         //zoom in or out
@@ -103,6 +103,10 @@ public class GameController : MonoBehaviour {
             frameManager.SwitchEmptyFrameLocation(FrameManager.Direction.Left);
             StartCoroutine(waitAndShootLaser());
         }
+
+        if ((Input.GetKeyDown(KeyCode.P))) {
+            ToggleTimeScale();
+        } 
     }
 
     void zoomInOut()
@@ -169,6 +173,11 @@ public class GameController : MonoBehaviour {
         {
             laser.ShootLaser();
         }
+    }
+
+    private void ToggleTimeScale()
+    {
+       Time.timeScale = (Time.timeScale + 1) % 2;
     }
 
 

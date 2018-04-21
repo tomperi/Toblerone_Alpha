@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour {
 
-    public float Speed;
+    public float speed;
+    public ProjectileManager projectileManager;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,6 @@ public class ProjectileController : MonoBehaviour {
 
     private void Move()
     {
-        transform.position += Vector3.right * Speed * Time.deltaTime;
+        transform.position += Vector3.right * speed * Time.deltaTime;
     }
 }
