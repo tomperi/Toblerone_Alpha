@@ -27,6 +27,11 @@ public class ProjectileManager : MonoBehaviour
             projectileIsAlive = true;
             SpawnProjectile();
         }
+
+        if (Input.GetKeyDown(KeyCode.T)) // Cheat Code!
+        {
+            DestroyFloatingStone();
+        }
     }
 
     private void SpawnProjectile()

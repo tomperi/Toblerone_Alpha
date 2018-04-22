@@ -8099,7 +8099,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f41951bb6c6ce0a4785575bb18805edb, type: 2}
+  - {fileID: 2100000, guid: fef98813961de2245aaf32cfe1ba7cae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19432,7 +19432,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14578
+  m_Name: pb_Mesh47584
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -25514,7 +25514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1168516486}
-  color: 0
+  color: 3
   colliders: 0000
   doorOpen: 0
 --- !u!1 &721758113
@@ -27184,7 +27184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 183370454}
-  color: 0
+  color: 3
   colliders: 0000
   doorOpen: 0
 --- !u!1 &758851976
@@ -47650,7 +47650,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f41951bb6c6ce0a4785575bb18805edb, type: 2}
+  - {fileID: 2100000, guid: fef98813961de2245aaf32cfe1ba7cae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -62766,7 +62766,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12770
+  m_Name: pb_Mesh45772
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -70723,7 +70723,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12174
+  m_Name: pb_Mesh45518
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
