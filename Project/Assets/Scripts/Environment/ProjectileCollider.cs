@@ -26,6 +26,11 @@ public class ProjectileCollider : MonoBehaviour {
         {
             this.gameObject.GetComponent<ProjectileController>().projectileManager.UpdateProjectilePositionIfNeeded(this.gameObject,other.gameObject);
         }
+        
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+        {
+
+        }
     }
 
     
