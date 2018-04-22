@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class FloatingStoneController : MonoBehaviour {
 
-    public GameObject projectile;
-
-	// Use this for initialization
-	void Start () {
-
+    private Animator animator;
+    private MoveToNextLevelScript moveToNextLevelScript;
+    // Use this for initialization
+    void Start () {
+        animator = GetComponent<Animator>();
+        moveToNextLevelScript = FindObjectOfType<MoveToNextLevelScript>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
 	}
-    
+
+    public void PlayDeathAndDestory()
+    {
+        animator.SetBool("StoneDeath", true);
+        Destroy(this.gameObject, 2f);
+    }
+
+    private void OnDestroy()
+    {
+        moveToNextLevelScript.OnLevelComplete();
+    }
+
+    IEnumerator CompleteLevelCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+    }
+
+
+
 }

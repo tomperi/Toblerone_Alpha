@@ -51,6 +51,6 @@ public class ProjectileController : MonoBehaviour {
 
     private void OnDestroy()
     {
-        projectileManager.spawnNewProjectileOnDeath();
+        projectileManager.SpawnNewProjectileOnDeath();
     }
 }

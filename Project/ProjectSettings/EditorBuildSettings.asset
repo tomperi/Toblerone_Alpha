@@ -26,3 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Alpha-projectile.unity
     guid: a05738022d728714380e4fc29424a94f
+  - enabled: 1
+    path: Assets/_Scenes/Alpha_end.unity
+    guid: 6cb1471af9760cd49abf0f320590bae4

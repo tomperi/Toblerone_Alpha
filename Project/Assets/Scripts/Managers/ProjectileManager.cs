@@ -10,17 +10,19 @@ public class ProjectileManager : MonoBehaviour
     public GameObject projectile;
     public FrameManager frameManager;
     private bool projectileIsAlive;
+    private bool stoneIsAlive;
     
     // Use this for initialization
     void Start()
     {
         projectileIsAlive = false;
+        stoneIsAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!projectileIsAlive && spawner.activeInHierarchy)
+        if (!projectileIsAlive && stoneIsAlive)
         {
             projectileIsAlive = true;
             SpawnProjectile();
@@ -86,10 +88,16 @@ public class ProjectileManager : MonoBehaviour
         return new Position(int.Parse(openDoor.transform.parent.name.Substring(openDoor.transform.parent.name.Length - 2,1)), int.Parse(openDoor.transform.parent.name.Substring(openDoor.transform.parent.name.Length - 1, 1)));
     }
 
-    public void spawnNewProjectileOnDeath()
+    public void SpawnNewProjectileOnDeath()
     {
         projectileIsAlive = false;
-        projectile = null;
+    }
+
+    public void DestroyFloatingStone()
+    {
+        stoneIsAlive = false;
+        projectileIsAlive = false;
+        spawner.GetComponent<FloatingStoneController>().PlayDeathAndDestory();
     }
 
 
