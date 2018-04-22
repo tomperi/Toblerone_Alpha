@@ -6,6 +6,7 @@ public class ProjectileManager : MonoBehaviour
 {
 
     public GameObject spawner;
+    public GameObject projectilePrefab;
     public GameObject projectile;
     public FrameManager frameManager;
     private bool projectileIsAlive;
@@ -34,7 +35,7 @@ public class ProjectileManager : MonoBehaviour
     IEnumerator SpawnProjectileCoroutine()
     {
         yield return new WaitForSeconds(2.0f);
-        projectile = Instantiate(projectile);
+        projectile = Instantiate(projectilePrefab);
         projectile.transform.position = new Vector3(spawner.transform.position.x + 3, 4, spawner.transform.position.z);
         PlaceProjectileObjectInActiveFrameHierarchy(frameManager.initialPlayerFrameRow, frameManager.initialPlayerFrameColumn); // PlayerFrame = SpawnerFrame
         projectile.GetComponent<ProjectileController>().projectileManager = this;
@@ -68,7 +69,7 @@ public class ProjectileManager : MonoBehaviour
     public void UpdateProjectilePositionIfNeeded(GameObject projectile, GameObject openDoor)
     {
         Position newPosition = CheckIfProjectileArrivedToNewFrame(projectile,openDoor);
-        Debug.Log(newPosition.row + "  " + newPosition.col);
+        //Debug.Log(newPosition.row + "  " + newPosition.col);
         if (newPosition.row != -1 && newPosition.col != -1)
         {
             PlaceProjectileObjectInActiveFrameHierarchy(newPosition.row,newPosition.col);
@@ -81,8 +82,14 @@ public class ProjectileManager : MonoBehaviour
         {
             return GetParentFrameIntialCordinates(openDoor.transform.parent.gameObject);
         }
-        Debug.Log(openDoor.transform.parent.name);
+        //Debug.Log(openDoor.transform.parent.name);
         return new Position(int.Parse(openDoor.transform.parent.name.Substring(openDoor.transform.parent.name.Length - 2,1)), int.Parse(openDoor.transform.parent.name.Substring(openDoor.transform.parent.name.Length - 1, 1)));
+    }
+
+    public void spawnNewProjectileOnDeath()
+    {
+        projectileIsAlive = false;
+        projectile = null;
     }
 
 

@@ -47,4 +47,10 @@ public class ProjectileController : MonoBehaviour {
                 break;
         }
     }
+
+
+    private void OnDestroy()
+    {
+        projectileManager.spawnNewProjectileOnDeath();
+    }
 }

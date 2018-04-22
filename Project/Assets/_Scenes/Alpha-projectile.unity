@@ -17181,7 +17181,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13316
+  m_Name: pb_Mesh413310
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -56745,7 +56745,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 2029372378}
-  projectile: {fileID: 1668768044344078, guid: 9463183ed0029034da252e3a0d187a8a, type: 2}
+  projectilePrefab: {fileID: 1668768044344078, guid: 9463183ed0029034da252e3a0d187a8a,
+    type: 2}
+  projectile: {fileID: 0}
   frameManager: {fileID: 427255221}
 --- !u!1 &1402547840
 GameObject:
