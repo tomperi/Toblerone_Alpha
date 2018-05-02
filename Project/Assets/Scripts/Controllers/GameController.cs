@@ -14,14 +14,14 @@ public class GameController : MonoBehaviour {
     public bool startZoomedOut;
     public bool isPlayerInLevel;
 
-    private bool zoomIn;
+    private bool isZoomedIn;
 
     private Laser laser;
 
     
     void Start()
     {
-        zoomIn = startZoomedOut;
+        isZoomedIn = startZoomedOut;
         startZoomInOut();
         laser = FindObjectOfType<Laser>();
         if (laser != null)
@@ -32,16 +32,45 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
-        //zoom in or out
+        //zoom in or out PC
         if (Input.GetButtonDown("Jump"))
         {
             zoomInOut();
         }
 
-        //move player
+        //zoom in or out Mobile
+        if (Input.touchCount == 2)
+        {
+            // Store both touches.
+            Touch touchZero = Input.GetTouch(0);
+            Touch touchOne = Input.GetTouch(1);
+
+            // Find the position in the previous frame of each touch.
+            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+            // Find the magnitude of the vector (the distance) between the touches in each frame.
+            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+            // Find the difference in the distances between each frame.
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+            if (deltaMagnitudeDiff < 0 && !isZoomedIn)
+            {
+                zoomInOut();
+            }
+            else if ((deltaMagnitudeDiff > 0 && isZoomedIn))
+            {
+                zoomInOut();
+            }
+
+        }
+
+        //move player PC
         if (Input.GetMouseButtonDown(0))
         {
-            if (zoomIn && isPlayerInLevel)
+            if (isZoomedIn && isPlayerInLevel)
             {
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -57,10 +86,28 @@ public class GameController : MonoBehaviour {
             }
         }
 
-        //rotate frame
+        //move player Mobile
+        if (Input.touchCount == 1 && isZoomedIn)
+        {
+            Touch touch = Input.touches[0];
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, playerLayerMask))
+            {
+                GameObject recipient = hit.transform.gameObject;
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    player.GoToPosition(hit.point);
+                }
+            }
+        }
+
+        //rotate frame PC
         if (Input.GetMouseButtonDown(1)) // Mouse Right Click
         {
-            if (!zoomIn)
+            if (!isZoomedIn)
             {
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -82,31 +129,61 @@ public class GameController : MonoBehaviour {
                         }
                         StartCoroutine(waitAndShootLaser());
                     }
-                    
+                }
+            }
+        }
+
+        //Rotate Frame Mobile
+
+        //move player Mobile
+        if (Input.touchCount == 1 && !isZoomedIn)
+        {
+            Touch touch = Input.touches[0];
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, floorLayerMask))
+            {
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    GameObject frame = hit.transform.parent.gameObject;
+
+                    if (frame != null)
+                    {
+                        frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+                        foreach (Transform transformChild in frame.transform) // Messy, needs to fix later! ~ Amir
+                        {
+                            if (transformChild.name == "ShadowProjectile(Clone)")
+                            {
+                                transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
+                            }
+                        }
+                        StartCoroutine(waitAndShootLaser());
+                    }
                 }
             }
         }
 
         // Move frame
-        if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!zoomIn))
+        if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Up);
             StartCoroutine(waitAndShootLaser());
         }
 
-        if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!zoomIn))
+        if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Right);
             StartCoroutine(waitAndShootLaser());
         }
 
-        if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!zoomIn))
+        if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Down);
             StartCoroutine(waitAndShootLaser());
         }
 
-        if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!zoomIn))
+        if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Left);
             StartCoroutine(waitAndShootLaser());
@@ -121,10 +198,10 @@ public class GameController : MonoBehaviour {
     {
         if (allowZoomInOut)
         {
-            if (zoomIn)
+            if (isZoomedIn)
             {
                 zoomOutCamera.SetActive(true);
-                zoomIn = false;
+                isZoomedIn = false;
                 if (isPlayerInLevel)
                 {
                     player.StopAtPlace();
@@ -134,7 +211,7 @@ public class GameController : MonoBehaviour {
             else
             {
                 zoomOutCamera.SetActive(false);
-                zoomIn = true;
+                isZoomedIn = true;
                 //Debug.Log("Zoom in");
             }
         }
@@ -142,10 +219,10 @@ public class GameController : MonoBehaviour {
 
     public void startZoomInOut()
     {
-        if (zoomIn)
+        if (isZoomedIn)
         {
             zoomOutCamera.SetActive(true);
-            zoomIn = false;
+            isZoomedIn = false;
             if (isPlayerInLevel)
             {
                 player.StopAtPlace();
@@ -155,7 +232,7 @@ public class GameController : MonoBehaviour {
         else
         {
             zoomOutCamera.SetActive(false);
-            zoomIn = true;
+            isZoomedIn = true;
             //Debug.Log("Zoom in");
         }
     }
