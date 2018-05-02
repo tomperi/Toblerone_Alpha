@@ -16,22 +16,35 @@ public class GameController : MonoBehaviour {
 
     private bool isZoomedIn;
 
+    //used for laser levels
     private Laser laser;
 
-    
+    //used for mobile
+    private Vector3 firstTouchPosition;
+    private Vector3 secondTouchPosition;
+    private float dragDistance;
+
     void Start()
     {
         isZoomedIn = startZoomedOut;
         startZoomInOut();
+
         laser = FindObjectOfType<Laser>();
         if (laser != null)
         {
             StartCoroutine(shootLaserAtStart());
         }
+
+        dragDistance = Screen.width * 10 / 100; //drag distance is 15% of the screen
     }
 
     void Update()
     {
+        if (!isZoomedIn)
+        {
+            player.StopAtPlace();
+        }
+
         //zoom in or out PC
         if (Input.GetButtonDown("Jump"))
         {
@@ -86,7 +99,124 @@ public class GameController : MonoBehaviour {
             }
         }
 
-        //move player Mobile
+        //move player/frame Mobile
+
+        if (Input.touchCount == 1 && !isZoomedIn) // user is touching the screen with a single touch
+        {
+            Touch touch = Input.GetTouch(0); // get the touch
+            if (touch.phase == TouchPhase.Began) //check for the first touch
+            {
+                firstTouchPosition = touch.position;
+                secondTouchPosition = touch.position;
+            }
+            /*
+            else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
+            {
+                secondTouchPosition = touch.position;
+            }*/
+            else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                secondTouchPosition = touch.position;  //last touch position. Ommitted if you use list
+
+                //Check if drag distance is greater than 15% of the screen height
+                if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) > dragDistance || Mathf.Abs(secondTouchPosition.z - firstTouchPosition.z) > dragDistance)
+                {//It's a drag
+                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, frameLayerMask))
+                    {
+                        GameObject frameParent = hit.transform.parent.gameObject;
+
+                        if (frameParent != null)
+                        {
+                            Frame frame = frameParent.GetComponentInChildren<Frame>();
+
+                            if (frame != null)
+                            {
+                                int frameRow = frame.currentRow;
+                                int frameCol = frame.currentCol;
+                                int emptyFrameRow = frameManager.EmptyFrame.row;
+                                int emptyFrameCol = frameManager.EmptyFrame.col;
+
+                                //check if the drag is vertical or horizontal
+                                if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) > Mathf.Abs(secondTouchPosition.z - firstTouchPosition.z))
+                                {   //If the horizontal movement is greater than the vertical movement...
+                                    if ((secondTouchPosition.x > firstTouchPosition.x))  //If the movement was to the right)
+                                    {   //Right swipe
+                                        if (frameRow == emptyFrameRow && frameCol == emptyFrameCol - 1)
+                                        {
+                                            frameManager.SwitchEmptyFrameLocation(Direction.Right);
+                                            StartCoroutine(waitAndShootLaser());
+                                        }
+                                        Debug.Log("Right Swipe");
+                                    }
+                                    else
+                                    {   //Left swipe
+                                        if (frameRow == emptyFrameRow && frameCol == emptyFrameCol + 1)
+                                        {
+                                            frameManager.SwitchEmptyFrameLocation(Direction.Left);
+                                            StartCoroutine(waitAndShootLaser());
+                                        }
+                                        Debug.Log("Left Swipe");
+                                    }
+                                }
+                                else if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) < Mathf.Abs(secondTouchPosition.z - firstTouchPosition.z))
+                                {   //the vertical movement is greater than the horizontal movement
+                                    if (secondTouchPosition.z > firstTouchPosition.z)  //If the movement was up
+                                    {   //Up swipe
+                                        if (frameRow == emptyFrameRow - 1 && frameCol == emptyFrameCol)
+                                        {
+                                            frameManager.SwitchEmptyFrameLocation(Direction.Up);
+                                            StartCoroutine(waitAndShootLaser());
+                                        }
+                                        Debug.Log("Up Swipe");
+                                        
+                                    }
+                                    else
+                                    {   //Down swipe
+                                        if (frameRow == emptyFrameRow + 1 && frameCol == emptyFrameCol)
+                                        {
+                                            frameManager.SwitchEmptyFrameLocation(Direction.Down);
+                                            StartCoroutine(waitAndShootLaser());
+                                        }
+                                        Debug.Log("Down Swipe");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {   //It's a tap as the drag distance is less than 20% of the screen height
+                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, floorLayerMask))
+                    {
+                        if (touch.phase == TouchPhase.Ended)
+                        {
+                            GameObject frame = hit.transform.parent.gameObject;
+
+                            if (frame != null)
+                            {
+                                frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+                                foreach (Transform transformChild in frame.transform) // Messy, needs to fix later! ~ Amir
+                                {
+                                    if (transformChild.name == "ShadowProjectile(Clone)")
+                                    {
+                                        transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
+                                    }
+                                }
+                                StartCoroutine(waitAndShootLaser());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        //move player mobile
         if (Input.touchCount == 1 && isZoomedIn)
         {
             Touch touch = Input.touches[0];
@@ -132,10 +262,9 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
+        /*
 
         //Rotate Frame Mobile
-
-        //move player Mobile
         if (Input.touchCount == 1 && !isZoomedIn)
         {
             Touch touch = Input.touches[0];
@@ -162,9 +291,9 @@ public class GameController : MonoBehaviour {
                     }
                 }
             }
-        }
+        }*/
 
-        // Move frame
+        // Move frame PC
         if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Up);
@@ -189,6 +318,7 @@ public class GameController : MonoBehaviour {
             StartCoroutine(waitAndShootLaser());
         }
 
+        // pause PC (not replicated in mobile)
         if ((Input.GetKeyDown(KeyCode.P))) {
             ToggleTimeScale();
         } 

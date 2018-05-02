@@ -20,6 +20,8 @@ public class FrameManager : MonoBehaviour
     private Position emptyFrame;
     private PlayerController playerController;
 
+    public Position EmptyFrame { get { return emptyFrame; } }
+
     void Start()
     {
         initFrameArray();
@@ -65,7 +67,6 @@ public class FrameManager : MonoBehaviour
             }
 
             SwitchFramePositionWithEmptyFramePosition(row, col);
-
         }
         
     }
