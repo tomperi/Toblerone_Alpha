@@ -13,55 +13,40 @@ public class Mirror : MonoBehaviour
         laser = FindObjectOfType<Laser>();
     }
 
-    public void OnMirrorLaserHit()
+    public List<Vector3> OnMirrorLaserHit(GameObject origin)
     {
-        StartCoroutine(waitBeforeCastingRay());
-    }
-
-    IEnumerator waitBeforeAddingPoint(Vector3 point)
-    {
-        yield return new WaitForSeconds(0.1f);
-        laser.addPoint(point, false);
-    }
-
-    IEnumerator waitBeforeCastingRay()
-    {
-        yield return new WaitForSeconds(0.5f);
+        List<Vector3> pointsList = new List<Vector3>();
 
         RaycastHit hit;
 
-        //transform.Rotate(new Vector3(0f, 0f, 0f));
-
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f, laser.allButOpenDoorLayerMask))
         {
-            Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));////
-            //Debug.Log("Mirror hit something");
             Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
-            //Vector3 point = hit.transform.position;
 
-            if (hit.transform.GetComponent<Mirror>() != null)
+            if (hit.transform.gameObject != origin)
             {
-                hit.transform.GetComponent<Mirror>().OnMirrorLaserHit();
-            }
+                if (hit.transform.gameObject.layer != layerMask)
+                {
+                    pointsList.Add(point);
+                }
 
-            if (hit.transform.GetComponent<laserEndPoint>() != null)
-            {
-                hit.transform.GetComponent<laserEndPoint>().OnHitTarget();
-            }
+                if (hit.transform.GetComponent<Mirror>() != null)
+                {
+                    List<Vector3> mirrorPointsList = hit.transform.GetComponent<Mirror>().OnMirrorLaserHit(this.gameObject);
 
-            if (hit.transform.gameObject.layer != layerMask)
-            {
-                StartCoroutine(waitBeforeAddingPoint(point));
-            }
-            else
-            {
-                //Debug.Log("got nothing");
-            }
+                    foreach (Vector3 mirrorPoint in mirrorPointsList)
+                    {
+                        pointsList.Add(mirrorPoint);
+                    }
+                }
 
-            //hit.transform.gameObject.SetActive(false);
-
+                if (hit.transform.GetComponent<laserEndPoint>() != null)
+                {
+                    hit.transform.GetComponent<laserEndPoint>().OnHitTarget();
+                }
+            }
         }
 
-        //transform.Rotate(new Vector3(0f, 0, 0f));
+        return pointsList;
     }
 }

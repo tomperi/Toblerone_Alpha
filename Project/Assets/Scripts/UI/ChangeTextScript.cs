@@ -18,7 +18,8 @@ public class ChangeTextScript : MonoBehaviour {
 
         levelText.text = initialString;
         wasTriggered = false;
-	}
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {

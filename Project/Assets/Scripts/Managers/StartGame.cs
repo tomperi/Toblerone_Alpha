@@ -17,5 +17,12 @@ public class StartGame : MonoBehaviour {
         {
             moveToNextLevelScript.OnLevelComplete();
         }
+
+        if (Input.touches.Length > 0)
+        {
+            moveToNextLevelScript.OnLevelComplete();
+        }
     }
+
+    
 }

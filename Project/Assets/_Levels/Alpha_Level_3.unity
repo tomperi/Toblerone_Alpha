@@ -2301,7 +2301,7 @@ MonoBehaviour:
     m_Bits: 4294967291
   frameLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1025
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2346,7 +2346,7 @@ GameObject:
   - component: {fileID: 129683279}
   - component: {fileID: 129683278}
   - component: {fileID: 129683277}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6191,7 +6191,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13412
+  m_Name: pb_Mesh13762
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -10346,7 +10346,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12546
+  m_Name: pb_Mesh28654
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -14639,7 +14639,7 @@ GameObject:
   - component: {fileID: 798310014}
   - component: {fileID: 798310013}
   - component: {fileID: 798310012}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15632,7 +15632,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12332
+  m_Name: pb_Mesh28176
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -16156,7 +16156,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12232
+  m_Name: pb_Mesh29054
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -16286,7 +16286,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh47458
+  m_Name: pb_Mesh12682
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -20145,7 +20145,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -25006,7 +25006,7 @@ GameObject:
   - component: {fileID: 1700465103}
   - component: {fileID: 1700465102}
   - component: {fileID: 1700465101}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
