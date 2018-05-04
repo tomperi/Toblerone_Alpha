@@ -16,8 +16,6 @@ public class GameController : MonoBehaviour {
 
     private bool isZoomedIn;
     public bool IsZoomedIn { get { return isZoomedIn; } }
-=======
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
 
     //used for laser levels
     private Laser laser;
@@ -39,9 +37,6 @@ public class GameController : MonoBehaviour {
         }
 
         dragDistance = Screen.width * 7 / 100; //drag distance is 7% of the screen
-=======
-        dragDistance = Screen.width * 10 / 100; //drag distance is 15% of the screen
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
     }
 
     void Update()
@@ -115,23 +110,12 @@ public class GameController : MonoBehaviour {
                 firstTouchPosition = touch.position;
                 secondTouchPosition = touch.position;
             }
-<<<<<<< HEAD
-=======
-            /*
-            else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
-            {
-                secondTouchPosition = touch.position;
-            }*/
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
             else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
             {
                 secondTouchPosition = touch.position;  //last touch position. Ommitted if you use list
 
                 //Check if drag distance is greater than 15% of the screen height
                 if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) > dragDistance || Mathf.Abs(secondTouchPosition.y - firstTouchPosition.y) > dragDistance)
-=======
-                if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) > dragDistance || Mathf.Abs(secondTouchPosition.z - firstTouchPosition.z) > dragDistance)
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
                 {//It's a drag
                     Ray ray = Camera.main.ScreenPointToRay(touch.position);
                     RaycastHit hit;
@@ -153,9 +137,6 @@ public class GameController : MonoBehaviour {
 
                                 //check if the drag is vertical or horizontal
                                 if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) > Mathf.Abs(secondTouchPosition.y - firstTouchPosition.y))
-=======
-                                if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) > Mathf.Abs(secondTouchPosition.z - firstTouchPosition.z))
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
                                 {   //If the horizontal movement is greater than the vertical movement...
                                     if ((secondTouchPosition.x > firstTouchPosition.x))  //If the movement was to the right)
                                     {   //Right swipe
@@ -181,13 +162,6 @@ public class GameController : MonoBehaviour {
                                     if (secondTouchPosition.y > firstTouchPosition.y)  //If the movement was up
                                     {   //Up swipe
                                         if (frameRow == emptyFrameRow + 1 && frameCol == emptyFrameCol)
-=======
-                                else if (Mathf.Abs(secondTouchPosition.x - firstTouchPosition.x) < Mathf.Abs(secondTouchPosition.z - firstTouchPosition.z))
-                                {   //the vertical movement is greater than the horizontal movement
-                                    if (secondTouchPosition.z > firstTouchPosition.z)  //If the movement was up
-                                    {   //Up swipe
-                                        if (frameRow == emptyFrameRow - 1 && frameCol == emptyFrameCol)
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
                                         {
                                             frameManager.SwitchEmptyFrameLocation(Direction.Up);
                                             StartCoroutine(waitAndShootLaser());
@@ -198,9 +172,6 @@ public class GameController : MonoBehaviour {
                                     else
                                     {   //Down swipe
                                         if (frameRow == emptyFrameRow - 1 && frameCol == emptyFrameCol)
-=======
-                                        if (frameRow == emptyFrameRow + 1 && frameCol == emptyFrameCol)
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
                                         {
                                             frameManager.SwitchEmptyFrameLocation(Direction.Down);
                                             StartCoroutine(waitAndShootLaser());
@@ -287,40 +258,6 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
-<<<<<<< HEAD
-=======
-        /*
-
-        //Rotate Frame Mobile
-        if (Input.touchCount == 1 && !isZoomedIn)
-        {
-            Touch touch = Input.touches[0];
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, floorLayerMask))
-            {
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    GameObject frame = hit.transform.parent.gameObject;
-
-                    if (frame != null)
-                    {
-                        frame.transform.Rotate(new Vector3(0f, 90f, 0f));
-                        foreach (Transform transformChild in frame.transform) // Messy, needs to fix later! ~ Amir
-                        {
-                            if (transformChild.name == "ShadowProjectile(Clone)")
-                            {
-                                transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
-                            }
-                        }
-                        StartCoroutine(waitAndShootLaser());
-                    }
-                }
-            }
-        }*/
-
->>>>>>> 796735fcb11e613cb9978a9c4cfd86f9e4efeff4
         // Move frame PC
         if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!isZoomedIn))
         {
