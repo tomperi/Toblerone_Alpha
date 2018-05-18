@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
             StartCoroutine(shootLaserAtStart());
         }
 
-        dragDistance = Screen.width * 7 / 100; //drag distance is 7% of the screen
+        dragDistance = Screen.width * 15 / 100; //drag distance is 15% of the screen
     }
 
     void Update()
@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        //move frame Mobile
+        //move/rotate frame Mobile
         if (Input.touchCount == 1 && !isZoomedIn) // user is touching the screen with a single touch
         {
             Touch touch = Input.GetTouch(0); // get the touch
