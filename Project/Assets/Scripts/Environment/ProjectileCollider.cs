@@ -19,18 +19,18 @@ public class ProjectileCollider : MonoBehaviour {
         Debug.Log(other.gameObject.name + " - " + LayerMask.LayerToName(other.gameObject.layer));
         if (other.gameObject.layer == LayerMask.NameToLayer("ClosedDoors") || other.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         else if (other.gameObject.layer == LayerMask.NameToLayer("OpenDoors"))
         {
-            this.gameObject.GetComponent<ProjectileController>().projectileManager.UpdateProjectilePositionIfNeeded(this.gameObject, other.gameObject);
+            gameObject.GetComponent<ProjectileController>().projectileManager.UpdateProjectilePositionIfNeeded(gameObject, other.gameObject);
         }
 
         else if (other.gameObject.layer == LayerMask.NameToLayer("Bomb"))
         {
-            this.gameObject.GetComponent<ProjectileController>().projectileManager.DestroyFloatingStone();
-            Destroy(this.gameObject);
+            gameObject.GetComponent<ProjectileController>().projectileManager.DestroyFloatingStone();
+            Destroy(gameObject);
         }
     }
 

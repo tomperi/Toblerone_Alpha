@@ -65,7 +65,7 @@ public class ProjectileManager : MonoBehaviour
 
     private Position GetCurrentParentFramePosition(GameObject childObject)
     {
-        while(childObject.transform.parent.name.Substring(0, childObject.transform.parent.name.Length - 2) != "Frame") // "Drills up" Hierarchy until FrameXY (row, column) is the parent
+        while(childObject.transform.parent.name.Substring(0, childObject.transform.parent.name.Length - 2) != "Frame")
         {
             return GetCurrentParentFramePosition(childObject.transform.parent.gameObject);
         }
@@ -76,7 +76,6 @@ public class ProjectileManager : MonoBehaviour
     public void UpdateProjectilePositionIfNeeded(GameObject projectile, GameObject openDoor)
     {
         Position newPosition = CheckIfProjectileArrivedToNewFrame(projectile,openDoor);
-        //Debug.Log(newPosition.row + "  " + newPosition.col);
         if (newPosition.row != -1 && newPosition.col != -1)
         {
             PlaceProjectileObjectInActiveFrameHierarchy(newPosition.row,newPosition.col);
@@ -85,11 +84,10 @@ public class ProjectileManager : MonoBehaviour
 
     private Position GetParentFrameIntialCordinates(GameObject openDoor)
     {
-        while (openDoor.transform.parent.name.Substring(0, openDoor.transform.parent.name.Length - 2) != "Frame") // "Drills up" Hierarchy until FrameXY (row, column) is the parent
+        while (openDoor.transform.parent.name.Substring(0, openDoor.transform.parent.name.Length - 2) != "Frame")
         {
             return GetParentFrameIntialCordinates(openDoor.transform.parent.gameObject);
         }
-        //Debug.Log(openDoor.transform.parent.name);
         return new Position(int.Parse(openDoor.transform.parent.name.Substring(openDoor.transform.parent.name.Length - 2,1)), int.Parse(openDoor.transform.parent.name.Substring(openDoor.transform.parent.name.Length - 1, 1)));
     }
 
