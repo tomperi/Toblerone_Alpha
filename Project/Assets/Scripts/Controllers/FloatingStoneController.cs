@@ -20,7 +20,7 @@ public class FloatingStoneController : MonoBehaviour {
     public void PlayDeathAndDestory()
     {
         animator.SetBool("StoneDeath", true);
-        Destroy(gameObject, 2f);
+        Destroy(this.gameObject, 2f);
     }
 
     private void OnDestroy()
