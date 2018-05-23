@@ -17,17 +17,20 @@ public class NewDoor : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter");
         if (other.gameObject.tag == "Door" && color == other.GetComponentInParent<NewDoor>().color)
         {
+            // Debug.Log("Enter");
             OpenDoors();
         }
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exit");
-        CloseDoors();
+        if (other.gameObject.tag == "Door" && color == other.GetComponentInParent<NewDoor>().color)
+        {
+            // Debug.Log("Exit");
+            CloseDoors();
+        }
     }
 
     public void OpenDoors()
