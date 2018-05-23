@@ -2258,6 +2258,17 @@ Transform:
   m_PrefabParentObject: {fileID: 4140466680816746, guid: 5340db1328a1ecb4fa530af30afec37b,
     type: 2}
   m_PrefabInternal: {fileID: 451706417}
+--- !u!114 &127602463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127602461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6a119788da1d45a12f38cd5ce00be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &127602464 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114073815009346352, guid: 5340db1328a1ecb4fa530af30afec37b,
@@ -11774,7 +11785,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.36666667
+  m_VoxelSize: 0.21666665
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 51128c4943d417e4f8eeb920f7d4e7f6, type: 2}
 --- !u!4 &661386172
@@ -16320,7 +16331,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-425180
+  m_Name: pb_Mesh-314208
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

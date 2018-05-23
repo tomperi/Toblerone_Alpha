@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FrameAttachable : MonoBehaviour {
 
-    public FrameManager frameManager;
+    private FrameManager frameManager;
+
+    private void Start()
+    {
+        frameManager = FindObjectOfType<FrameManager>();
+    }
 
     private void PlaceGameObjectInActiveFrameHierarchy(int row, int col)
     {
@@ -15,12 +20,16 @@ public class FrameAttachable : MonoBehaviour {
     private Position CheckIfGameObjectArrivedToNewFrame(GameObject frame)
     {
         Position gameObjectPosition = GetCurrentParentFramePosition(gameObject);
-        Position openDoorPosition = GetCurrentParentFramePosition(frame);
-        return gameObjectPosition.col != openDoorPosition.col || gameObjectPosition.row != openDoorPosition.row ? GetParentFrameIntialCordinates(frame) : new Position(-1, -1);
+        Position framePosition = GetCurrentParentFramePosition(frame);
+        return gameObjectPosition.col != framePosition.col || gameObjectPosition.row != framePosition.row ? GetParentFrameIntialCordinates(frame) : new Position(-1, -1);
     }
 
     private Position GetCurrentParentFramePosition(GameObject childObject)
     {
+        if (childObject.transform.parent == null)
+        {
+            return new Position(-1, -1);
+        }
         while (childObject.transform.parent.name.Substring(0, childObject.transform.parent.name.Length - 2) != "Frame")
         {
             return GetCurrentParentFramePosition(childObject.transform.parent.gameObject);
