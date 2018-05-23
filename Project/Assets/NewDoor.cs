@@ -7,12 +7,10 @@ public class NewDoor : MonoBehaviour
     public DoorColor color;
 
     NavMeshObstacle obstacle;
-    private Collider collider;
 
     void Start()
     {
         obstacle = GetComponent<NavMeshObstacle>();
-        collider = GetComponent<Collider>();
     }
     
     void OnTriggerEnter(Collider other)
