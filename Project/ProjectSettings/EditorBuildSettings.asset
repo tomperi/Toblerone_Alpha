@@ -29,6 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Levels/Alpha_Level_4.unity
     guid: b584026238f151542b002889a6b8d7bb
+  - enabled: 0
     path: Assets/_Scenes/Alpha-laser.unity
     guid: 6c8b65add8224734a8cd9bdcd63ff807
   - enabled: 0
