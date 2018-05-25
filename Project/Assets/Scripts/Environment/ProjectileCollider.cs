@@ -11,7 +11,7 @@ public class ProjectileCollider : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+        else if (other.gameObject.tag == "Floating Stone")
         {
             gameObject.GetComponent<ProjectileController>().projectileManager.DestroyFloatingStone();
             Destroy(gameObject);

@@ -43,7 +43,7 @@ public class ProjectileManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         projectile = Instantiate(projectilePrefab);
-        projectile.transform.position = new Vector3(spawner.transform.position.x + 3, 4, spawner.transform.position.z);
+        projectile.transform.position = new Vector3(spawner.transform.position.x + 4, 3f, spawner.transform.position.z);
         projectile.GetComponent<ProjectileController>().projectileManager = this;
         projectile.SetActive(true);
         
