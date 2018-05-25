@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public bool allowZoomInOut;
     public bool startZoomedOut;
     public bool isPlayerInLevel;
+    private bool runningOnDesktop;
 
     private bool isZoomedIn;
     public bool IsZoomedIn { get { return isZoomedIn; } }
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour
         laser = FindObjectOfType<Laser>();
 
         dragDistance = Screen.width * 15 / 100; //drag distance is 15% of the screen
+        runningOnDesktop = SystemInfo.deviceType == DeviceType.Desktop;
     }
 
     void Update()
@@ -44,7 +46,7 @@ public class GameController : MonoBehaviour
         }
 
         //zoom in or out PC
-        if (Input.GetButtonDown("Jump"))
+        if (runningOnDesktop && Input.GetButtonDown("Jump"))
         {
             zoomInOut();
         }
@@ -79,7 +81,7 @@ public class GameController : MonoBehaviour
         }
 
         //move player PC
-        if (Input.GetMouseButtonDown(0))
+        if (runningOnDesktop && Input.GetMouseButtonDown(0))
         {
             if (isZoomedIn && isPlayerInLevel)
             {
@@ -194,7 +196,7 @@ public class GameController : MonoBehaviour
         }
 
         //rotate frame PC
-        if (Input.GetMouseButtonDown(1)) // Mouse Right Click
+        if (runningOnDesktop && Input.GetMouseButtonDown(1)) // Mouse Right Click
         {
             if (!isZoomedIn)
             {
@@ -221,35 +223,38 @@ public class GameController : MonoBehaviour
                 }
             }
         }
-        // Move frame PC
-        if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!isZoomedIn))
+        if (runningOnDesktop)
         {
-            frameManager.SwitchEmptyFrameLocation(Direction.Up);
-            StartCoroutine(resetLaser());
-        }
+            // Move frame PC
+            if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!isZoomedIn))
+            {
+                frameManager.SwitchEmptyFrameLocation(Direction.Up);
+                StartCoroutine(resetLaser());
+            }
 
-        if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!isZoomedIn))
-        {
-            frameManager.SwitchEmptyFrameLocation(Direction.Right);
-            StartCoroutine(resetLaser());
-        }
+            if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!isZoomedIn))
+            {
+                frameManager.SwitchEmptyFrameLocation(Direction.Right);
+                StartCoroutine(resetLaser());
+            }
 
-        if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!isZoomedIn))
-        {
-            frameManager.SwitchEmptyFrameLocation(Direction.Down);
-            StartCoroutine(resetLaser());
-        }
+            if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!isZoomedIn))
+            {
+                frameManager.SwitchEmptyFrameLocation(Direction.Down);
+                StartCoroutine(resetLaser());
+            }
 
-        if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!isZoomedIn))
-        {
-            frameManager.SwitchEmptyFrameLocation(Direction.Left);
-            StartCoroutine(resetLaser());
-        }
+            if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!isZoomedIn))
+            {
+                frameManager.SwitchEmptyFrameLocation(Direction.Left);
+                StartCoroutine(resetLaser());
+            }
 
-        // pause PC (not replicated in mobile)
-        if ((Input.GetKeyDown(KeyCode.P)))
-        {
-            ToggleTimeScale();
+            // pause PC (not replicated in mobile)
+            if ((Input.GetKeyDown(KeyCode.P)))
+            {
+                ToggleTimeScale();
+            }
         }
     }
 
@@ -304,7 +309,7 @@ public class GameController : MonoBehaviour
             laser.resetLaser();
         }
 
-        yield return new WaitForSeconds(0.1f); ;
+        yield return new WaitForSeconds(0.1f);
     }
 
     private void ToggleTimeScale()
