@@ -128,11 +128,14 @@ public class FrameManager : MonoBehaviour
 
     private void setFramePosition(GameObject frame, int row, int col)
     {
-        Frame currentFrameScript = frame.GetComponentInChildren<Frame>();
-        if (currentFrameScript != null)
+        if (frame != null)
         {
-            currentFrameScript.currentRow = row;
-            currentFrameScript.currentCol = col;
+            Frame currentFrameScript = frame.GetComponentInChildren<Frame>();
+            if (currentFrameScript != null)
+            {
+                currentFrameScript.currentRow = row;
+                currentFrameScript.currentCol = col;
+            }
         }
     }
 
