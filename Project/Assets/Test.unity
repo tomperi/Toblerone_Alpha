@@ -2475,7 +2475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorOpen: 0
-  color: 1
+  color: 0
 --- !u!65 &541020534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5794,11 +5794,7 @@ Prefab:
     - target: {fileID: 114644674992789216, guid: 21a143bc073dbfd4d8dd4fb0bbd46856,
         type: 2}
       propertyPath: color
-<<<<<<< HEAD
       value: 0
-=======
-      value: 1
->>>>>>> cd26c4325de55b8d006bec994ea615f17ac99a02
       objectReference: {fileID: 0}
     - target: {fileID: 65297594275582928, guid: 21a143bc073dbfd4d8dd4fb0bbd46856,
         type: 2}
