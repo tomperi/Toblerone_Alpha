@@ -56,7 +56,5 @@ public class NewDoor : MonoBehaviour
         {
             child.gameObject.layer = mask;
         }
-
-        Debug.Log(this.transform.name);
     }
 }
