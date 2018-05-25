@@ -28,19 +28,8 @@ public class laserEndPoint : MonoBehaviour {
         if (!wasHit)
         {
             wasHit = true;
-            StartCoroutine(markLaserHit());
-            //laser.isTargetHit = true;
-          //  laser.resetLaser();
+            laser.levelHitTarget();
             GetComponent<Renderer>().material = hitMaterial;
         }
-        
-    }
-
-    IEnumerator markLaserHit()
-    {
-        yield return new WaitForSeconds(0.5f);
-        laser.levelHitTarget();
-        yield return new WaitForSeconds(2f);
-        moveToNextLevelScript.OnLevelComplete();
     }
 }
