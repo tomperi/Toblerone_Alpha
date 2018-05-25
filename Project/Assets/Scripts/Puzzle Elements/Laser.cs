@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public LayerMask allButOpenDoorLayerMask;
+    public LayerMask LaserMask;
     public bool isTargetHit;
 
     public float temp;
 
     private LineRenderer lineRenderer;
     private Vector3[] linePositions;
-    
+
 
     // Use this for initialization
     void Start()
@@ -24,7 +24,7 @@ public class Laser : MonoBehaviour
         lineRenderer.SetPositions(linePositions);
         isTargetHit = false;
 
-        
+
     }
 
     public void ShootLaser()
@@ -32,14 +32,30 @@ public class Laser : MonoBehaviour
         resetLaser();
         if (!isTargetHit)
         {
-            StartCoroutine(shootLaser());
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 10000f, LaserMask))
+            {
+                Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
+
+                laserEndPoint endPoint = hit.transform.GetComponent<laserEndPoint>();
+
+                if (endPoint != null && !endPoint.WasHit)
+                {
+                    endPoint.OnHitTarget();
+                }
+
+                addPoint(point, true);
+            }
+            else
+            {
+                resetLaser();
+            }
         }
     }
 
     public void levelHitTarget()
     {
         isTargetHit = true;
-        lineRenderer.positionCount = 0;
 
     }
 
@@ -53,34 +69,6 @@ public class Laser : MonoBehaviour
         linePositions = newLinePositions;
         lineRenderer.positionCount = linePositions.Length;
         lineRenderer.SetPositions(linePositions);
-    }
-
-    IEnumerator shootLaser()
-    {
-        yield return new WaitForSeconds(1f);
-
-        RaycastHit hit;
-        List<Vector3> mirrorPointsList = new List<Vector3>();
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f, allButOpenDoorLayerMask))
-        {
-            Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
-            if (hit.transform.GetComponent<Mirror>() != null)
-            {
-                mirrorPointsList = hit.transform.GetComponent<Mirror>().OnMirrorLaserHit(this.gameObject);
-            }
-
-            addPoint(point, true);
-            Vector3[] mirrorPointsArray = mirrorPointsList.ToArray();
-            for (int i = 0; i < mirrorPointsArray.Length; i++)
-            {
-                addPoint(mirrorPointsArray[i], true);
-            }
-        }
-        else
-        {
-            resetLaser();
-        }
-
     }
 
     private void updateOriginPosition()

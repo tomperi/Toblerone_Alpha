@@ -4,25 +4,16 @@ using UnityEngine;
 
 public class FrameAttachable : MonoBehaviour {
 
-    private FrameManager frameManager;
-    private Frame frameController;
-
-    private void Start()
-    {
-        frameManager = FindObjectOfType<FrameManager>();
-        frameController = GetComponent<Frame>();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" || other.tag == "Projectile")
         {
             PlaceObjectUnderParent(other.gameObject);
-            Debug.Log("Grandma moved to " + transform.parent.gameObject.name);
+            Debug.Log(other.tag + " moved to " + transform.parent.gameObject.name);
 
         }
     }
-    
+
     private void PlaceObjectUnderParent(GameObject grandma)
     {
         grandma.transform.SetParent(this.transform.parent);

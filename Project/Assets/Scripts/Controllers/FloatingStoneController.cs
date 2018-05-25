@@ -6,16 +6,12 @@ public class FloatingStoneController : MonoBehaviour {
 
     private Animator animator;
     private MoveToNextLevelScript moveToNextLevelScript;
-    // Use this for initialization
-    void Start () {
+
+    void Start()
+    {
         animator = GetComponent<Animator>();
         moveToNextLevelScript = FindObjectOfType<MoveToNextLevelScript>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
     public void PlayDeathAndDestory()
     {

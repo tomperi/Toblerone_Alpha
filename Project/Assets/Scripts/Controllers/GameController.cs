@@ -32,10 +32,6 @@ public class GameController : MonoBehaviour
         startZoomInOut();
 
         laser = FindObjectOfType<Laser>();
-        if (laser != null)
-        {
-            StartCoroutine(shootLaserAtStart());
-        }
 
         dragDistance = Screen.width * 15 / 100; //drag distance is 15% of the screen
     }
@@ -123,13 +119,13 @@ public class GameController : MonoBehaviour
                         if ((secondTouchPosition.x > firstTouchPosition.x))  //If the movement was to the right)
                         {   //Right swipe
                             frameManager.SwitchEmptyFrameLocation(Direction.Right);
-                            StartCoroutine(waitAndShootLaser());
+                            StartCoroutine(resetLaser());
                             Debug.Log("Right Swipe");
                         }
                         else
                         {   //Left swipe
                             frameManager.SwitchEmptyFrameLocation(Direction.Left);
-                            StartCoroutine(waitAndShootLaser());
+                            StartCoroutine(resetLaser());
                             Debug.Log("Left Swipe");
                         }
                     }
@@ -138,14 +134,14 @@ public class GameController : MonoBehaviour
                         if (secondTouchPosition.y > firstTouchPosition.y)  //If the movement was up
                         {   //Up swipe
                             frameManager.SwitchEmptyFrameLocation(Direction.Up);
-                            StartCoroutine(waitAndShootLaser());
+                            StartCoroutine(resetLaser());
                             Debug.Log("Up Swipe");
 
                         }
                         else
                         {   //Down swipe
                             frameManager.SwitchEmptyFrameLocation(Direction.Down);
-                            StartCoroutine(waitAndShootLaser());
+                            StartCoroutine(resetLaser());
                             Debug.Log("Down Swipe");
                         }
                     }
@@ -170,7 +166,7 @@ public class GameController : MonoBehaviour
                                             transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
                                         }
                                     }
-                                    StartCoroutine(waitAndShootLaser());
+                                    StartCoroutine(resetLaser());
                                 }
                             }
                         }
@@ -220,7 +216,7 @@ public class GameController : MonoBehaviour
                                 transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
                             }
                         }
-                        StartCoroutine(waitAndShootLaser());
+                        StartCoroutine(resetLaser());
                     }
                 }
             }
@@ -229,25 +225,25 @@ public class GameController : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.UpArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Up);
-            StartCoroutine(waitAndShootLaser());
+            StartCoroutine(resetLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.RightArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Right);
-            StartCoroutine(waitAndShootLaser());
+            StartCoroutine(resetLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.DownArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Down);
-            StartCoroutine(waitAndShootLaser());
+            StartCoroutine(resetLaser());
         }
 
         if ((Input.GetKeyDown(KeyCode.LeftArrow)) && (!isZoomedIn))
         {
             frameManager.SwitchEmptyFrameLocation(Direction.Left);
-            StartCoroutine(waitAndShootLaser());
+            StartCoroutine(resetLaser());
         }
 
         // pause PC (not replicated in mobile)
@@ -300,27 +296,15 @@ public class GameController : MonoBehaviour
         }
     }
 
-    IEnumerator shootLaserAtStart()
-    {
-        yield return new WaitForSeconds(0.3f);
-        if (laser != null)
-        {
-            laser.ShootLaser();
-        }
-    }
 
-    IEnumerator waitAndShootLaser()
+    IEnumerator resetLaser()
     {
         if (laser != null)
         {
             laser.resetLaser();
         }
 
-        yield return new WaitForSeconds(0.3f);
-        if (laser != null)
-        {
-            laser.ShootLaser();
-        }
+        yield return new WaitForSeconds(0.1f); ;
     }
 
     private void ToggleTimeScale()
