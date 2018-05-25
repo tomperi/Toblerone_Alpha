@@ -22,7 +22,7 @@ public class Door : MonoBehaviour
         obstacle = door.GetComponent<NavMeshObstacle>();
 
         openDoorLayerMask = LayerMask.NameToLayer("OpenDoors");
-        closedDoorLayerMask = LayerMask.NameToLayer("ClosedDoors");
+        closedDoorLayerMask = LayerMask.NameToLayer("Laser");
         setAllChildLayers(closedDoorLayerMask);
         
     }

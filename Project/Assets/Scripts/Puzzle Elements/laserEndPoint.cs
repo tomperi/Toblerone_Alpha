@@ -12,6 +12,8 @@ public class laserEndPoint : MonoBehaviour {
 
     private MoveToNextLevelScript moveToNextLevelScript;
 
+    public bool WasHit {get {return wasHit;}}
+
     // Use this for initialization
     void Start () {
         wasHit = false;

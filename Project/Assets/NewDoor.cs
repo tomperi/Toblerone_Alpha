@@ -7,10 +7,14 @@ public class NewDoor : MonoBehaviour
     public DoorColor color;
 
     NavMeshObstacle obstacle;
+    private LayerMask openDoorLayerMask;
+    private LayerMask closedDoorLayerMask;
 
     void Start()
     {
         obstacle = GetComponent<NavMeshObstacle>();
+        openDoorLayerMask = LayerMask.NameToLayer("OpenDoors");
+        closedDoorLayerMask = LayerMask.NameToLayer("Laser");
     }
     
     void OnTriggerEnter(Collider other)
@@ -35,11 +39,25 @@ public class NewDoor : MonoBehaviour
     {
         doorOpen = true;
         obstacle.enabled = false;
+        setAllChildLayers(openDoorLayerMask);
     }
 
     public void CloseDoors()
     {
         doorOpen = false;
         obstacle.enabled = true;
+        setAllChildLayers(closedDoorLayerMask);
+
+    }
+
+    private void setAllChildLayers(int mask)
+    {
+        gameObject.layer = mask;
+
+        foreach (Transform child in gameObject.transform)
+        {
+            child.gameObject.layer = mask;
+        }
+
     }
 }
