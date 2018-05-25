@@ -22,7 +22,6 @@ public class FrameAttachable : MonoBehaviour {
 
         }
     }
-    
     private void PlaceObjectUnderParent(GameObject grandma)
     {
         grandma.transform.SetParent(this.transform.parent);
