@@ -52,12 +52,11 @@ public class NewDoor : MonoBehaviour
 
     private void setAllChildLayers(int mask)
     {
-        gameObject.layer = mask;
-
-        foreach (Transform child in gameObject.transform)
+        foreach (Transform child in GetComponentsInChildren<Transform>())
         {
             child.gameObject.layer = mask;
         }
 
+        Debug.Log(this.transform.name);
     }
 }
