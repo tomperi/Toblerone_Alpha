@@ -13,16 +13,6 @@ public class Frame : MonoBehaviour
         frameManager = FindObjectOfType<FrameManager>();
 	}
 
-	void Update () 
-	{
-		if (Input.GetMouseButtonDown (1)) 
-		{
-			Vector3 NewPosition = GetComponent<Transform>().position;
-			NewPosition.x -= 10;
-			GetComponent<Transform>().position = NewPosition;
-		}
-	}
-
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
