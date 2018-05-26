@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Levels/Laser_Tutorial.unity
     guid: 193b97ec6c983374899f5d9adc9d98c7
   - enabled: 0
     path: Assets/_Scenes/Alpha_start.unity
     guid: a94cabb0de6fe614eb60416f222f6c2e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Test.unity
     guid: e0dde9142dd1eff4092456460e335876
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Levels/Projectile_Level_No_Rotate.unity
     guid: 428d8b45f782627439c704873f8a4a9c
   - enabled: 0
@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/Alpha_end.unity
     guid: 6cb1471af9760cd49abf0f320590bae4
+  - enabled: 1
+    path: Assets/_Levels/Projectile_Tutorial.unity
+    guid: 60dce848084aa9c43a4e9253ecae2df7
