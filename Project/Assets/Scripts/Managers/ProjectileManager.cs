@@ -33,12 +33,7 @@ public class ProjectileManager : MonoBehaviour
     {
         if (!projectileIsAlive && stoneIsAlive)
         {
-            projectileIsAlive = true;
-            projectile = Instantiate(projectilePrefab);
-            int direction = spawnDirection.Equals(SpawnProjectileDirection.Right) ? 1 : -1;
-            projectile.transform.position = new Vector3(spawner.transform.position.x + 5 * direction, spawner.transform.position.y + 3, spawner.transform.position.z);
-            projectile.GetComponent<ProjectileController>().projectileManager = this;
-            projectile.SetActive(true);          
+            StartCoroutine(SpawnProjectileWithDelay());
         }
     }
 
@@ -53,6 +48,18 @@ public class ProjectileManager : MonoBehaviour
         projectileIsAlive = false;
         spawner.GetComponent<FloatingStoneController>().PlayDeathAndDestory();
     }
+
+    IEnumerator SpawnProjectileWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        projectileIsAlive = true;
+        projectile = Instantiate(projectilePrefab);
+        int direction = spawnDirection.Equals(SpawnProjectileDirection.Right) ? 1 : -1;
+        projectile.transform.position = new Vector3(spawner.transform.position.x + 5 * direction, spawner.transform.position.y + 3, spawner.transform.position.z);
+        projectile.GetComponent<ProjectileController>().projectileManager = this;
+        projectile.SetActive(true);
+    }
+    
 
 
 }
