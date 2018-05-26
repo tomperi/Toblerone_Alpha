@@ -9,6 +9,7 @@ public class ProjectileManager : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject projectile;
     public FrameManager frameManager;
+    public SpawnProjectileDirection spawnDirection;
     private bool projectileIsAlive;
     private bool stoneIsAlive;
     
@@ -22,34 +23,26 @@ public class ProjectileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!projectileIsAlive && stoneIsAlive)
-        {
-            projectileIsAlive = true;
-            SpawnProjectile();
-        }
-
         if (Input.GetKeyDown(KeyCode.T)) // Cheat Code!
         {
             DestroyFloatingStone();
         }
     }
 
-    private void SpawnProjectile()
+    public void SpawnProjectile()
     {
-        StartCoroutine(SpawnProjectileCoroutine());
+        if (!projectileIsAlive && stoneIsAlive)
+        {
+            projectileIsAlive = true;
+            projectile = Instantiate(projectilePrefab);
+            int direction = spawnDirection.Equals(SpawnProjectileDirection.Right) ? 1 : -1;
+            projectile.transform.position = new Vector3(spawner.transform.position.x + 5 * direction, spawner.transform.position.y + 3, spawner.transform.position.z);
+            projectile.GetComponent<ProjectileController>().projectileManager = this;
+            projectile.SetActive(true);          
+        }
     }
 
-    IEnumerator SpawnProjectileCoroutine()
-    {
-        yield return new WaitForSeconds(2.0f);
-        projectile = Instantiate(projectilePrefab);
-        projectile.transform.position = new Vector3(spawner.transform.position.x + 4, 3f, spawner.transform.position.z);
-        projectile.GetComponent<ProjectileController>().projectileManager = this;
-        projectile.SetActive(true);
-        
-    }
-
-    public void SpawnNewProjectileOnDeath()
+    public void EnableNewProjectilesOnDeath()
     {
         projectileIsAlive = false;
     }

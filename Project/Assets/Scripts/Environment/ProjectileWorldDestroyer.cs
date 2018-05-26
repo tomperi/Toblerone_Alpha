@@ -6,6 +6,9 @@ public class ProjectileWorldDestroyer : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        Destroy(other.gameObject);
+        if (other.tag == "Projectile")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
