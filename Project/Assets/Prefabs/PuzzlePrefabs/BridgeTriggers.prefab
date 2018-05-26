@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23726698148241106}
   - component: {fileID: 54932368764995806}
   - component: {fileID: 114949758423041964}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: BridgeTriggers
   m_TagString: Untagged
   m_Icon: {fileID: 0}

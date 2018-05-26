@@ -275,7 +275,7 @@ public class GameController : MonoBehaviour
         //animation.Play("FrameRotation");
     }
 
-    public void zoomInOut()
+    void zoomInOut()
     {
         if (allowZoomInOut)
         {

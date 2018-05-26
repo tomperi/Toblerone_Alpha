@@ -7,7 +7,7 @@ public class LaserLevelManager : MonoBehaviour {
 
     private bool allWereHit;
     private bool[] targetsHit;
-    private LevelExit exit;
+    private MoveToNextLevelScript exit;
 
     // Use this for initialization
     void Start () {
@@ -17,7 +17,7 @@ public class LaserLevelManager : MonoBehaviour {
         targetsHit[1] = false;
         targetsHit[2] = false;
 
-        exit = FindObjectOfType<LevelExit>();
+        exit = FindObjectOfType<MoveToNextLevelScript>();
         exit.gameObject.SetActive(false);
     }
 	public bool wereAllHit()
@@ -41,14 +41,13 @@ public class LaserLevelManager : MonoBehaviour {
             {
                 targetsHit[2] = true;
                 allWereHit = true;
-                StartCoroutine(activateExit());
+                activateExit();
             }
         }
     }
 
-    IEnumerator activateExit()
+    private void activateExit()
     {
-        yield return new WaitForSeconds(1f);
         exit.gameObject.SetActive(true);
     }
 }
