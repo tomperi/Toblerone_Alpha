@@ -28,7 +28,7 @@ public class SpriteController : MonoBehaviour
         }
         else
         {
-            if (audioSource != null &&!audioSource.isPlaying)
+            if (audioSource != null && !audioSource.isPlaying)
             {
                 audioSource.Play();
             }
