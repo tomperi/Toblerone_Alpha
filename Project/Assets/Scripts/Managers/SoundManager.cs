@@ -6,13 +6,17 @@ public class SoundManager : MonoBehaviour {
 
     private static SoundManager instance = null;
     private float currentBackgroundTime = 0;
-    public AudioSource audioSource;
+    public AudioSource zoomInBackgroundAudioSource;
+    public AudioSource zoomOutBackgroundAudioSource;
+    public AudioSource soundEffectAudioSource;
     public AudioClip zoomInBackgroundMusic;
     public AudioClip zoomOutBackgroundMusic;
     public AudioClip zoomInSoundEffect;
     public AudioClip zoomOutSoundEffect;
     public AudioClip rotateSoundEffect;
-
+    private float zoomInBackgroundMusicVolumeTarget;
+    private float zoomOutBackgroundMusicVolumeTarget;
+    private float zoomActionSoundEffectLength;
     public static SoundManager Instance
     {
         get
@@ -23,9 +27,11 @@ public class SoundManager : MonoBehaviour {
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         //StartCoroutine(playZoomInAction());
-        PlayZoomInBackgroundMusic();
+        zoomInBackgroundAudioSource.clip = zoomInBackgroundMusic;
+        zoomOutBackgroundAudioSource.clip = zoomOutBackgroundMusic;
+        zoomActionSoundEffectLength = (zoomInSoundEffect.length + zoomOutSoundEffect.length) / 2;
+        initPlayBackgroundMusic();
     }
 
     private void Awake()
@@ -41,65 +47,108 @@ public class SoundManager : MonoBehaviour {
 
     private void Update()
     {
-        if(audioSource.clip == zoomInBackgroundMusic || audioSource.clip == zoomOutBackgroundMusic)
+        if(zoomInBackgroundAudioSource.clip == zoomInBackgroundMusic || zoomInBackgroundAudioSource.clip == zoomOutBackgroundMusic)
         {
-            currentBackgroundTime = audioSource.time;
+            currentBackgroundTime = zoomInBackgroundAudioSource.time;
             Debug.Log(currentBackgroundTime);
         }
     }
 
-    public void PlayZoomInBackgroundMusic()
+    private void initPlayBackgroundMusic()
     {
-        audioSource.clip = zoomInBackgroundMusic;
-        audioSource.Play();
+        zoomOutBackgroundAudioSource.volume = 0;
+        zoomInBackgroundAudioSource.volume = 1;
+        zoomInBackgroundAudioSource.Play();
+        zoomOutBackgroundAudioSource.Play();
     }
 
-    public void PlayZoomOutBackgroundMusic()
+    private void playZoomInAction()
     {
-        playZoomOutSoundEffect();
-        audioSource.Stop();
-        audioSource.clip = zoomOutBackgroundMusic;
-        audioSource.Play();
+        soundEffectAudioSource.PlayOneShot(zoomInSoundEffect);
+        StartCoroutine(FadeIn(zoomOutBackgroundAudioSource));
+        StartCoroutine(FadeOut(zoomInBackgroundAudioSource));
+        /*
+        soundEffectAudioSource.clip = zoomInSoundEffect;
+        soundEffectAudioSource.Play();    
+        zoomInBackgroundAudioSource.clip = zoomInBackgroundMusic;
+        zoomInBackgroundAudioSource.time = currentBackgroundTime;
+        zoomInBackgroundAudioSource.Play();
+        */
     }
 
-    private void playZoomInSoundEffect()
+    private void playZoomOutAction()
     {
-        //StartCoroutine(playSound(zoomInSoundEffect));
+        soundEffectAudioSource.PlayOneShot(zoomOutSoundEffect);
+        StartCoroutine(FadeIn(zoomInBackgroundAudioSource));
+        StartCoroutine(FadeOut(zoomOutBackgroundAudioSource));
+        /*
+        soundEffectAudioSource.clip = zoomOutSoundEffect;
+        soundEffectAudioSource.Play();
+        zoomInBackgroundAudioSource.clip = zoomOutBackgroundMusic;
+        zoomInBackgroundAudioSource.time = currentBackgroundTime;
+        zoomInBackgroundAudioSource.Play();
+        */
     }
 
-    private void playZoomOutSoundEffect()
+    public void toggleZoomSoundAction(bool zoomIn)
     {
-        audioSource.PlayOneShot(zoomOutSoundEffect);
+        if(zoomIn)
+        {
+            playZoomInAction();
+        }
+        else
+        {
+            playZoomOutAction();
+        }
     }
-
-    public void playZoomInAction()
-    {
-        StartCoroutine(playZoomInActionCoroutine());
-    }
-
-    public void playZoomOutAction()
-    {
-        StartCoroutine(playZoomOutActionCoroutine());
-    }
-
+    /*
     IEnumerator playZoomInActionCoroutine()
     {
-        audioSource.clip = zoomInSoundEffect;
-        audioSource.Play();
+        zoomInBackgroundAudioSource.clip = zoomInSoundEffect;
+        zoomInBackgroundAudioSource.Play();
         yield return new WaitForSeconds(zoomInSoundEffect.length);
-        audioSource.clip = zoomInBackgroundMusic;
-        audioSource.time = currentBackgroundTime;
-        audioSource.Play();
+        zoomInBackgroundAudioSource.clip = zoomInBackgroundMusic;
+        zoomInBackgroundAudioSource.time = currentBackgroundTime;
+        zoomInBackgroundAudioSource.Play();
     }
 
     IEnumerator playZoomOutActionCoroutine()
     {
-        audioSource.clip = zoomInSoundEffect;
-        audioSource.Play();
+        zoomInBackgroundAudioSource.clip = zoomInSoundEffect;
+        zoomInBackgroundAudioSource.Play();
         yield return new WaitForSeconds(zoomInSoundEffect.length);
-        audioSource.clip = zoomOutBackgroundMusic;
-        audioSource.time = currentBackgroundTime;
-        audioSource.Play();
+        zoomInBackgroundAudioSource.clip = zoomOutBackgroundMusic;
+        zoomInBackgroundAudioSource.time = currentBackgroundTime;
+        zoomInBackgroundAudioSource.Play();
+    }
+    */
+
+    IEnumerator FadeOut(AudioSource audioSource)
+    {
+        //float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= Time.deltaTime / zoomActionSoundEffectLength;
+
+            yield return null;
+        }
+
+        audioSource.volume = 0;
+    }
+
+    IEnumerator FadeIn(AudioSource audioSource)
+    {
+        //float startVolume = audioSource.volume;
+
+        while (audioSource.volume < 1)
+        {
+            audioSource.volume += Time.deltaTime / zoomActionSoundEffectLength;
+
+            yield return null;
+        }
+
+        audioSource.volume = 1;
     }
 
 }
