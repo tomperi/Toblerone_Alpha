@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update () 
 	{
-	    if (currentPath.status == NavMeshPathStatus.PathComplete)
+	    if (currentPath.status == NavMeshPathStatus.PathComplete && agent.isActiveAndEnabled)
 	    {
 	        agent.SetPath(currentPath);
 	    }

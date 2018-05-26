@@ -19,7 +19,7 @@ public class FrameManager : MonoBehaviour
     private Position activeFrame;
     private Position emptyFrame;
     private PlayerController playerController;
-    //private Vector3 playerRelativePosition;
+    private Vector3 playerRelativePosition;
 
     public Position EmptyFrame { get { return emptyFrame; } }
 
@@ -60,9 +60,9 @@ public class FrameManager : MonoBehaviour
     {
         if (frames[row, col] != null)
         {
-            //playerRelativePosition = player.transform.parent.transform.position - player.transform.position; 
+            playerRelativePosition = player.transform.parent.transform.position - player.transform.position; 
             SwitchFramePositionWithEmptyFramePosition(row, col);
-            //SwitchPlayerPosition();
+            SwitchPlayerPosition();
         }
         
     }
@@ -109,15 +109,16 @@ public class FrameManager : MonoBehaviour
         emptyFrame.col = col;
     }
 
-    /*
+    
     public void SwitchPlayerPosition()
     {
         Transform playerParentFrameTransform = player.transform.parent;
         playerController.StopNavAgent();
         player.gameObject.transform.position = playerParentFrameTransform.position - playerRelativePosition;
         playerController.StartNavAgent();
+        playerController.StopAtPlace();
     }
-    */
+    
 
 
     private bool isActiveFrame(int row, int col)
