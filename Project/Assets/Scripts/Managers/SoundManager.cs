@@ -107,7 +107,10 @@ public class SoundManager : MonoBehaviour {
     
     public void PlayRotateFrameSoundEffect()
     {
-        soundEffectAudioSource.PlayOneShot(rotateSoundEffect);
+        if (!soundEffectAudioSource.isPlaying)
+        {
+            soundEffectAudioSource.PlayOneShot(rotateSoundEffect);
+        }
     }
 
 }
