@@ -36,12 +36,19 @@ public class Laser : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 10000f, LaserMask))
             {
                 Vector3 point = hit.transform.GetComponent<Renderer>().bounds.center;
-
+                
+                //Laser Tutorial
                 laserEndPoint endPoint = hit.transform.GetComponent<laserEndPoint>();
-
                 if (endPoint != null && !endPoint.WasHit)
                 {
                     endPoint.OnHitTarget();
+                }
+                
+                //Laser Level
+                LaserLevelTargets target = hit.transform.GetComponent<LaserLevelTargets>();
+                if (target != null && !target.WasHit)
+                {
+                    target.OnHitTarget();
                 }
 
                 addPoint(point, true);
