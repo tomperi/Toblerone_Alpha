@@ -4,18 +4,8 @@ using UnityEngine;
 
 public class FrameRotate : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void PrintSomething()
+    public void EndRotation()
     {
-        Debug.Log("Rotated");
+        GetComponent<Animator>().SetBool("Rotate", false);
     }
 }
