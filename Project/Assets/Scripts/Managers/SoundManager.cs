@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour {
     private float zoomInBackgroundMusicVolumeTarget;
     private float zoomOutBackgroundMusicVolumeTarget;
     private float zoomActionSoundEffectLength;
+    private float fadeThreshold = 0.95f;
     public static SoundManager Instance
     {
         get
@@ -50,7 +51,7 @@ public class SoundManager : MonoBehaviour {
         if(zoomInBackgroundAudioSource.clip == zoomInBackgroundMusic || zoomInBackgroundAudioSource.clip == zoomOutBackgroundMusic)
         {
             currentBackgroundTime = zoomInBackgroundAudioSource.time;
-            Debug.Log(currentBackgroundTime);
+            //Debug.Log(currentBackgroundTime);
         }
     }
 
@@ -64,33 +65,24 @@ public class SoundManager : MonoBehaviour {
 
     private void playZoomInAction()
     {
-        soundEffectAudioSource.PlayOneShot(zoomInSoundEffect);
-        StartCoroutine(FadeIn(zoomOutBackgroundAudioSource));
-        StartCoroutine(FadeOut(zoomInBackgroundAudioSource));
-        /*
-        soundEffectAudioSource.clip = zoomInSoundEffect;
-        soundEffectAudioSource.Play();    
-        zoomInBackgroundAudioSource.clip = zoomInBackgroundMusic;
-        zoomInBackgroundAudioSource.time = currentBackgroundTime;
-        zoomInBackgroundAudioSource.Play();
-        */
+        playAction(zoomInBackgroundAudioSource, zoomOutBackgroundAudioSource, zoomOutSoundEffect);
     }
 
     private void playZoomOutAction()
     {
-        soundEffectAudioSource.PlayOneShot(zoomOutSoundEffect);
-        StartCoroutine(FadeIn(zoomInBackgroundAudioSource));
-        StartCoroutine(FadeOut(zoomOutBackgroundAudioSource));
-        /*
-        soundEffectAudioSource.clip = zoomOutSoundEffect;
-        soundEffectAudioSource.Play();
-        zoomInBackgroundAudioSource.clip = zoomOutBackgroundMusic;
-        zoomInBackgroundAudioSource.time = currentBackgroundTime;
-        zoomInBackgroundAudioSource.Play();
-        */
+        playAction(zoomOutBackgroundAudioSource, zoomInBackgroundAudioSource, zoomOutSoundEffect);
     }
 
-    public void toggleZoomSoundAction(bool zoomIn)
+    private void playAction(AudioSource fadeInSource, AudioSource fadeOutSource, AudioClip zoomSoundClip) 
+    {
+        fadeOutSource.volume = 1;
+        fadeInSource.volume = 0;
+        soundEffectAudioSource.PlayOneShot(zoomSoundClip);
+        StartCoroutine(FadeIn(fadeInSource));
+        StartCoroutine(FadeOut(fadeOutSource));
+    }
+
+    public void ToggleZoomSoundAction(bool zoomIn)
     {
         if(zoomIn)
         {
@@ -101,33 +93,10 @@ public class SoundManager : MonoBehaviour {
             playZoomOutAction();
         }
     }
-    /*
-    IEnumerator playZoomInActionCoroutine()
-    {
-        zoomInBackgroundAudioSource.clip = zoomInSoundEffect;
-        zoomInBackgroundAudioSource.Play();
-        yield return new WaitForSeconds(zoomInSoundEffect.length);
-        zoomInBackgroundAudioSource.clip = zoomInBackgroundMusic;
-        zoomInBackgroundAudioSource.time = currentBackgroundTime;
-        zoomInBackgroundAudioSource.Play();
-    }
-
-    IEnumerator playZoomOutActionCoroutine()
-    {
-        zoomInBackgroundAudioSource.clip = zoomInSoundEffect;
-        zoomInBackgroundAudioSource.Play();
-        yield return new WaitForSeconds(zoomInSoundEffect.length);
-        zoomInBackgroundAudioSource.clip = zoomOutBackgroundMusic;
-        zoomInBackgroundAudioSource.time = currentBackgroundTime;
-        zoomInBackgroundAudioSource.Play();
-    }
-    */
 
     IEnumerator FadeOut(AudioSource audioSource)
     {
-        //float startVolume = audioSource.volume;
-
-        while (audioSource.volume > 0)
+        while (audioSource.volume > 1 - fadeThreshold)
         {
             audioSource.volume -= Time.deltaTime / zoomActionSoundEffectLength;
 
@@ -139,9 +108,7 @@ public class SoundManager : MonoBehaviour {
 
     IEnumerator FadeIn(AudioSource audioSource)
     {
-        //float startVolume = audioSource.volume;
-
-        while (audioSource.volume < 1)
+        while (audioSource.volume < fadeThreshold)
         {
             audioSource.volume += Time.deltaTime / zoomActionSoundEffectLength;
 
@@ -149,6 +116,11 @@ public class SoundManager : MonoBehaviour {
         }
 
         audioSource.volume = 1;
+    }
+    
+    public void PlayRotateFrameSoundEffect()
+    {
+        soundEffectAudioSource.PlayOneShot(rotateSoundEffect);
     }
 
 }
