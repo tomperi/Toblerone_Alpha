@@ -10,6 +10,7 @@ public class LaserTrigger : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+           Debug.Log("Triggered");
             laser.ShootLaser();
         }
     }
