@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class LaserTrigger : MonoBehaviour {
 
-    public Laser laser;
+    private Laser laser;
+    private GameController gameController;
+
+    private void Start()
+    {
+        laser = FindObjectOfType<Laser>();
+        gameController = FindObjectOfType<GameController>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-           Debug.Log("Triggered");
+            gameController.zoomInOut();
             laser.ShootLaser();
         }
     }

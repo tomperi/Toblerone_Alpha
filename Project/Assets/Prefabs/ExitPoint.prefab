@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212854301774074060}
   - component: {fileID: 65602174275261022}
   - component: {fileID: 95258695091899230}
-  - component: {fileID: 114682843612689322}
-  m_Layer: 0
+  - component: {fileID: 114939059640901032}
+  m_Layer: 2
   m_Name: ExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114682843612689322
+--- !u!114 &114939059640901032
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1120140511488744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cb0ed1e76e05342b27c68b91e44239, type: 3}
+  m_Script: {fileID: 11500000, guid: 1753d3d92e634c64b8587620949c1fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212854301774074060
