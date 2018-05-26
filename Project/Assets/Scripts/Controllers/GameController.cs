@@ -16,7 +16,6 @@ public class GameController : MonoBehaviour
     public bool startZoomedOut;
     public bool isPlayerInLevel;
     private bool runningOnDesktop;
-    private SoundManager soundManager;
 
     private bool isZoomedIn;
     public bool IsZoomedIn { get { return isZoomedIn; } }
@@ -31,7 +30,6 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        soundManager = SoundManager.Instance;
         isZoomedIn = startZoomedOut;
         startZoomInOut();
 
@@ -267,6 +265,11 @@ public class GameController : MonoBehaviour
     {
         Animator[] animator = i_Frame.GetComponentsInChildren<Animator>();
         GameObject under = null;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayRotateFrameSoundEffect();
+        }
+        
 
         foreach (Animator anim in animator)
         {
@@ -291,7 +294,7 @@ public class GameController : MonoBehaviour
                 }
                 if (SoundManager.Instance != null)
                 {
-                    SoundManager.Instance.ToggleZoomSoundAction(true);
+                    SoundManager.Instance.ToggleZoomSoundAction(false);
                 }
                 //soundManager.playZoomOutAction();
                 //Debug.Log("Zoom out");
@@ -302,7 +305,7 @@ public class GameController : MonoBehaviour
                 isZoomedIn = true;
                 if (SoundManager.Instance != null)
                 {
-                    SoundManager.Instance.ToggleZoomSoundAction(false);
+                    SoundManager.Instance.ToggleZoomSoundAction(true);
                 }
                 //soundManager.playZoomInAction();
                 //Debug.Log("Zoom in");

@@ -5,7 +5,6 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 
     private static SoundManager instance = null;
-    private float currentBackgroundTime = 0;
     public AudioSource zoomInBackgroundAudioSource;
     public AudioSource zoomOutBackgroundAudioSource;
     public AudioSource soundEffectAudioSource;
@@ -14,8 +13,6 @@ public class SoundManager : MonoBehaviour {
     public AudioClip zoomInSoundEffect;
     public AudioClip zoomOutSoundEffect;
     public AudioClip rotateSoundEffect;
-    private float zoomInBackgroundMusicVolumeTarget;
-    private float zoomOutBackgroundMusicVolumeTarget;
     private float zoomActionSoundEffectLength;
     private float fadeThreshold = 0.95f;
     public static SoundManager Instance
@@ -28,7 +25,6 @@ public class SoundManager : MonoBehaviour {
 
     private void Start()
     {
-        //StartCoroutine(playZoomInAction());
         zoomInBackgroundAudioSource.clip = zoomInBackgroundMusic;
         zoomOutBackgroundAudioSource.clip = zoomOutBackgroundMusic;
         zoomActionSoundEffectLength = (zoomInSoundEffect.length + zoomOutSoundEffect.length) / 2;
@@ -46,15 +42,6 @@ public class SoundManager : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Update()
-    {
-        if(zoomInBackgroundAudioSource.clip == zoomInBackgroundMusic || zoomInBackgroundAudioSource.clip == zoomOutBackgroundMusic)
-        {
-            currentBackgroundTime = zoomInBackgroundAudioSource.time;
-            //Debug.Log(currentBackgroundTime);
-        }
-    }
-
     private void initPlayBackgroundMusic()
     {
         zoomOutBackgroundAudioSource.volume = 0;
@@ -65,7 +52,7 @@ public class SoundManager : MonoBehaviour {
 
     private void playZoomInAction()
     {
-        playAction(zoomInBackgroundAudioSource, zoomOutBackgroundAudioSource, zoomOutSoundEffect);
+        playAction(zoomInBackgroundAudioSource, zoomOutBackgroundAudioSource, zoomInSoundEffect);
     }
 
     private void playZoomOutAction()
