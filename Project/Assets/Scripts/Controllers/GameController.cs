@@ -264,6 +264,10 @@ public class GameController : MonoBehaviour
     private void RotateFrame(GameObject i_Frame)
     {
         Animator[] animator = i_Frame.GetComponentsInChildren<Animator>();
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayRotateFrameSoundEffect();
+        }
         GameObject under = null;
 
         foreach (Animator anim in animator)
@@ -287,7 +291,10 @@ public class GameController : MonoBehaviour
                 {
                     player.StopAtPlace();
                 }
-                SoundManager.Instance.ToggleZoomSoundAction(false);
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.ToggleZoomSoundAction(false);
+                }
                 //soundManager.playZoomOutAction();
                 //Debug.Log("Zoom out");
             }
@@ -295,7 +302,10 @@ public class GameController : MonoBehaviour
             {
                 zoomOutCamera.SetActive(false);
                 isZoomedIn = true;
-                SoundManager.Instance.ToggleZoomSoundAction(true);
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.ToggleZoomSoundAction(true);
+                }
                 //soundManager.playZoomInAction();
                 //Debug.Log("Zoom in");
             }
