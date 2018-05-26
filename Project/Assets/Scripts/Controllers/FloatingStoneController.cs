@@ -5,28 +5,33 @@ using UnityEngine;
 public class FloatingStoneController : MonoBehaviour {
 
     private Animator animator;
-    private MoveToNextLevelScript moveToNextLevelScript;
+    private LevelExit exit;
+    private GameController controller;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        moveToNextLevelScript = FindObjectOfType<MoveToNextLevelScript>();
+        controller = FindObjectOfType<GameController>();
+        exit = FindObjectOfType<LevelExit>();
+        exit.gameObject.SetActive(false);
     }
 
     public void PlayDeathAndDestory()
     {
         animator.SetBool("StoneDeath", true);
-        Destroy(gameObject, 2f);
-    }
-
-    private void OnDestroy()
-    {
-        moveToNextLevelScript.OnLevelComplete();
+        StartCoroutine(CompleteLevelCoroutine());
+        //Destroy(gameObject, 2f);
     }
 
     IEnumerator CompleteLevelCoroutine()
     {
+        if (controller.IsZoomedIn)
+        {
+            controller.zoomInOut();
+        }
         yield return new WaitForSeconds(2f);
+        exit.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
