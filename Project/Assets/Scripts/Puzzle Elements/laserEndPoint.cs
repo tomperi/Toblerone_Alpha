@@ -10,7 +10,7 @@ public class laserEndPoint : MonoBehaviour {
     public Material notHitMaterial;
     public Material hitMaterial;
 
-    private MoveToNextLevelScript moveToNextLevelScript;
+    private LevelExit exit;
 
     public bool WasHit {get {return wasHit;}}
 
@@ -20,7 +20,8 @@ public class laserEndPoint : MonoBehaviour {
         laser = FindObjectOfType<Laser>();
         GetComponent<Renderer>().material = notHitMaterial;
 
-        moveToNextLevelScript = FindObjectOfType<MoveToNextLevelScript>();
+        exit = FindObjectOfType<LevelExit>();
+        exit.gameObject.SetActive(false);
 	}
 	
 	public void OnHitTarget()
@@ -30,6 +31,13 @@ public class laserEndPoint : MonoBehaviour {
             wasHit = true;
             laser.levelHitTarget();
             GetComponent<Renderer>().material = hitMaterial;
+            StartCoroutine(setExitActive());
         }
+    }
+
+    IEnumerator setExitActive()
+    {
+        yield return new WaitForSeconds(1f);
+        exit.gameObject.SetActive(true);
     }
 }

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23409615169462578}
   - component: {fileID: 114413253542652670}
   - component: {fileID: 54693339465008688}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LaserTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,4 +123,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd31594089673946ba8bdf7a6f2297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laser: {fileID: 0}

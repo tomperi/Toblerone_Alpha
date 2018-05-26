@@ -7,6 +7,7 @@ public class MoveToNextLevelScript : MonoBehaviour {
 
 	public void OnLevelComplete()
     {
+        Debug.Log("Triggered");
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
         {
