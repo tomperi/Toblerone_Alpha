@@ -10,8 +10,9 @@ public class ProjectileManager : MonoBehaviour
     public GameObject projectile;
     public FrameManager frameManager;
     public SpawnProjectileDirection spawnDirection;
-    private bool projectileIsAlive;
-    private bool stoneIsAlive;
+    public StoneTrigger recentStoneTrigger;
+    public bool projectileIsAlive;
+    public bool stoneIsAlive;
     
     // Use this for initialization
     void Start()
@@ -29,10 +30,11 @@ public class ProjectileManager : MonoBehaviour
         }
     }
 
-    public void SpawnProjectile()
+    public void SpawnProjectile(StoneTrigger stoneTrigger)
     {
         if (!projectileIsAlive && stoneIsAlive)
         {
+            recentStoneTrigger = stoneTrigger;
             StartCoroutine(SpawnProjectileWithDelay());
         }
     }
@@ -40,6 +42,7 @@ public class ProjectileManager : MonoBehaviour
     public void EnableNewProjectilesOnDeath()
     {
         projectileIsAlive = false;
+        recentStoneTrigger.ResetTrigger();
     }
 
     public void DestroyFloatingStone()
@@ -51,8 +54,8 @@ public class ProjectileManager : MonoBehaviour
 
     IEnumerator SpawnProjectileWithDelay()
     {
-        yield return new WaitForSeconds(1f);
         projectileIsAlive = true;
+        yield return new WaitForSeconds(1f);
         projectile = Instantiate(projectilePrefab);
         int direction = spawnDirection.Equals(SpawnProjectileDirection.Right) ? 1 : -1;
         projectile.transform.position = new Vector3(spawner.transform.position.x + 5 * direction, spawner.transform.position.y + 3, spawner.transform.position.z);

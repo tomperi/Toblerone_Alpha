@@ -43,15 +43,11 @@ public class LaserTrigger : MonoBehaviour {
 
         if (isOff)
         {
-            isOff = false;
-            offSprite.SetActive(false);
-            onSprite.SetActive(true);
+            toggleOn();
         }
         else
         {
-            isOff = true;
-            offSprite.SetActive(true);
-            onSprite.SetActive(false);
+            toggleOff();
         }
 
         yield return new WaitForSeconds(0.3f);
@@ -59,4 +55,19 @@ public class LaserTrigger : MonoBehaviour {
         gameController.zoomInOut();
         laser.ShootLaser();
     }
+
+    private void toggleOn()
+    {
+        isOff = false;
+        offSprite.SetActive(false);
+        onSprite.SetActive(true);
+    }
+
+    private void toggleOff()
+    {
+        isOff = true;
+        offSprite.SetActive(true);
+        onSprite.SetActive(false);
+    }
+
 }

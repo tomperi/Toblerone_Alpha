@@ -25,7 +25,7 @@ public class StoneTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("Player") && projectileManager.stoneIsAlive && !projectileManager.projectileIsAlive)
         {
             StartCoroutine(waitAndDo());
         }
@@ -36,15 +36,11 @@ public class StoneTrigger : MonoBehaviour {
 
         if (isOff)
         {
-            isOff = false;
-            offSprite.SetActive(false);
-            onSprite.SetActive(true);
+            toggleOn();
         }
         else
         {
-            isOff = true;
-            offSprite.SetActive(true);
-            onSprite.SetActive(false);
+            toggleOff();
         }
 
         yield return new WaitForSeconds(0.3f);
@@ -54,7 +50,28 @@ public class StoneTrigger : MonoBehaviour {
             gameController.zoomInOut();
         }
 
-        projectileManager.SpawnProjectile();
+        projectileManager.SpawnProjectile(this);
     }
+
+    private void toggleOn()
+    {
+        isOff = false;
+        offSprite.SetActive(false);
+        onSprite.SetActive(true);
+    }
+
+    private void toggleOff()
+    {
+        isOff = true;
+        offSprite.SetActive(true);
+        onSprite.SetActive(false);
+    }
+
+    public void ResetTrigger()
+    {
+        toggleOff();
+    }
+
+
 
 }
