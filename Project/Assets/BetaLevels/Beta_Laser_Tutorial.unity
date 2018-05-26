@@ -4312,41 +4312,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114406326208358240, guid: 4fa208e75532a0d4182c8d562042bb09,
-        type: 2}
-      propertyPath: start.b
-      value: 0.9485294
-      objectReference: {fileID: 0}
-    - target: {fileID: 114406326208358240, guid: 4fa208e75532a0d4182c8d562042bb09,
-        type: 2}
-      propertyPath: start.r
-      value: 0.11159169
-      objectReference: {fileID: 0}
-    - target: {fileID: 114406326208358240, guid: 4fa208e75532a0d4182c8d562042bb09,
-        type: 2}
-      propertyPath: start.g
-      value: 0.11159169
-      objectReference: {fileID: 0}
-    - target: {fileID: 114406326208358240, guid: 4fa208e75532a0d4182c8d562042bb09,
-        type: 2}
-      propertyPath: end.r
-      value: 0.61121327
-      objectReference: {fileID: 0}
-    - target: {fileID: 114406326208358240, guid: 4fa208e75532a0d4182c8d562042bb09,
-        type: 2}
-      propertyPath: end.g
-      value: 0.64577836
-      objectReference: {fileID: 0}
-    - target: {fileID: 114406326208358240, guid: 4fa208e75532a0d4182c8d562042bb09,
-        type: 2}
-      propertyPath: end.b
-      value: 0.875
-      objectReference: {fileID: 0}
-    - target: {fileID: 114406326208358240, guid: 4fa208e75532a0d4182c8d562042bb09,
-        type: 2}
-      propertyPath: mat
-      value: 
-      objectReference: {fileID: 2100000, guid: f500221b376d58d4f84f26f01076f5d1, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fa208e75532a0d4182c8d562042bb09, type: 2}
   m_IsPrefabParent: 0
