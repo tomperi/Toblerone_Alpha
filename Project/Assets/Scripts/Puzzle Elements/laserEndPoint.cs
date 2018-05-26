@@ -39,18 +39,25 @@ public class laserEndPoint : MonoBehaviour {
             offSprite.SetActive(false);
             onSprite.SetActive(true);
 
-            if (onSprite.GetComponent<Animator>() != null)
-            {
-                onSprite.GetComponent<Animator>().Play("ReceiverAnimation");
-            }
-
+            StartCoroutine(waitAndStartAnim());
             StartCoroutine(setExitActive());
         }
     }
 
     IEnumerator setExitActive()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         exit.gameObject.SetActive(true);
+    }
+
+    IEnumerator waitAndStartAnim()
+    {
+        yield return new WaitForSeconds(2f);
+
+        if (onSprite.GetComponent<Animator>() != null)
+        {
+            onSprite.GetComponent<Animator>().Play("ReceiverAnimation");
+        }
+
     }
 }

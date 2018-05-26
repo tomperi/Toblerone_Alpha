@@ -32,12 +32,21 @@ public class LaserLevelTargets : MonoBehaviour {
             offSprite.SetActive(false);
             onSprite.SetActive(true);
 
-            if (onSprite.GetComponent<Animator>() != null)
-            {
-                onSprite.GetComponent<Animator>().Play("ReceiverAnimation");
-            }
+            StartCoroutine(waitAndStartAnim());
 
             manager.markAsHit();
         }
+    }
+
+
+    IEnumerator waitAndStartAnim()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (onSprite.GetComponent<Animator>() != null)
+        {
+            onSprite.GetComponent<Animator>().Play("ReceiverAnimation");
+        }
+
     }
 }
