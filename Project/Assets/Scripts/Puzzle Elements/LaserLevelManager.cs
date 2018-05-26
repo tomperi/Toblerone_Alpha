@@ -20,7 +20,6 @@ public class LaserLevelManager : MonoBehaviour {
         exit = FindObjectOfType<MoveToNextLevelScript>();
         exit.gameObject.SetActive(false);
     }
-	
 	public bool wereAllHit()
     {
         return allWereHit;

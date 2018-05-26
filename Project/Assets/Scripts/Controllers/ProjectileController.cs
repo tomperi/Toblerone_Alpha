@@ -11,8 +11,18 @@ public class ProjectileController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        direction = Direction.Right;
-        directionVector = Vector3.right;
+        SpawnProjectileDirection spawnDirection = projectileManager.spawnDirection;
+        if (spawnDirection.Equals(SpawnProjectileDirection.Right))
+        {
+            direction = Direction.Right;
+            directionVector = Vector3.right;
+        }
+        else
+        {
+            direction = Direction.Left;
+            directionVector = Vector3.left;
+            transform.Rotate(new Vector3(0f, 180f, 0f));
+        }
 	}
 	
 	// Update is called once per frame
@@ -48,9 +58,8 @@ public class ProjectileController : MonoBehaviour {
         }
     }
 
-
     private void OnDestroy()
     {
-        projectileManager.SpawnNewProjectileOnDeath();
+        projectileManager.EnableNewProjectilesOnDeath();
     }
 }

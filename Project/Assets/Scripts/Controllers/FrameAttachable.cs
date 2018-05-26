@@ -6,16 +6,32 @@ public class FrameAttachable : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Projectile")
+        if (other.tag == "Projectile" || other.tag == "Player")
         {
             PlaceObjectUnderParent(other.gameObject);
-            Debug.Log(other.tag + " moved to " + transform.parent.gameObject.name);
-
+            Debug.Log(other.tag + " moved to " + transform.parent.name);
         }
     }
 
-    private void PlaceObjectUnderParent(GameObject grandma)
+    private void OnTriggerStay(Collider other)
     {
-        grandma.transform.SetParent(this.transform.parent);
+        if (other.tag == "Projectile" && other.transform.parent == null)
+        {
+            PlaceObjectUnderParent(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Projectile")
+        {
+            Debug.Log("bye");
+            other.transform.parent = null;
+        }
+    }
+
+    private void PlaceObjectUnderParent(GameObject i_GameObject)
+    {
+        i_GameObject.transform.SetParent(this.transform.parent);
     }
 }

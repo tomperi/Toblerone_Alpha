@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ProBuilder2.Common;
 
 public class GameController : MonoBehaviour
 {
@@ -206,11 +207,13 @@ public class GameController : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, 10000f, floorLayerMask))
                 {
-                    GameObject frame = hit.transform.parent.gameObject;
+                    GameObject frame = hit.transform.parent.parent.gameObject;
 
                     if (frame != null)
                     {
-                        frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+                        RotateFrame(frame);
+                        //frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+                        //Debug.Log("Should rotate " + frame.transform.name);
                         foreach (Transform transformChild in frame.transform) // Messy, needs to fix later! ~ Amir
                         {
                             if (transformChild.name == "ShadowProjectile(Clone)")
@@ -256,6 +259,20 @@ public class GameController : MonoBehaviour
                 ToggleTimeScale();
             }
         }
+    }
+
+    private void RotateFrame(GameObject i_Frame)
+    {
+        Animator[] animator = i_Frame.GetComponentsInChildren<Animator>();
+        GameObject under = null;
+
+        foreach (Animator anim in animator)
+        {
+            anim.SetBool("Rotate", true);
+        }
+
+        //Animation animation = i_Frame.GetComponent<Animation>();
+        //animation.Play("FrameRotation");
     }
 
     void zoomInOut()
