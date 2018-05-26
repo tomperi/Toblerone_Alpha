@@ -6,41 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Levels/Laser_Tutorial.unity
-    guid: 193b97ec6c983374899f5d9adc9d98c7
-  - enabled: 0
-    path: Assets/_Scenes/Alpha_start.unity
-    guid: a94cabb0de6fe614eb60416f222f6c2e
-  - enabled: 0
-    path: Assets/Test.unity
-    guid: e0dde9142dd1eff4092456460e335876
-  - enabled: 0
-    path: Assets/_Levels/Projectile_Level_No_Rotate.unity
-    guid: 428d8b45f782627439c704873f8a4a9c
-  - enabled: 0
-    path: Assets/_Levels/Alpha_Level_1.unity
-    guid: f8e0bb9f0400e1c4b8cc677d06180800
-  - enabled: 0
-    path: Assets/_Levels/Alpha_Level_2.unity
-    guid: 39dc8ee3591e7db44b9bf4eb0f466c27
-  - enabled: 0
-    path: Assets/_Levels/Alpha_Level_3.unity
-    guid: 85d3ee9c1b6cbe547a5f1b44c687a537
-  - enabled: 0
-    path: Assets/_Levels/Alpha_Level_4.unity
-    guid: b584026238f151542b002889a6b8d7bb
-  - enabled: 0
-    path: Assets/_Scenes/Alpha-laser.unity
-    guid: 6c8b65add8224734a8cd9bdcd63ff807
-  - enabled: 0
-    path: Assets/_Scenes/Alpha-projectile.unity
-    guid: a05738022d728714380e4fc29424a94f
-  - enabled: 0
-    path: Assets/_Scenes/Alpha_end.unity
-    guid: 6cb1471af9760cd49abf0f320590bae4
-  - enabled: 0
-    path: Assets/_Levels/Projectile_Tutorial.unity
-    guid: 60dce848084aa9c43a4e9253ecae2df7
-  - enabled: 0
-    path: Assets/_Levels/Projectile_Level_1.unity
-    guid: 371c830847c564547899602a6ff28dbe
+    path: Assets/BetaLevels/Beta_Level_1.unity
+    guid: 3bb9a55b48731ac47981372dfe99f4d2
+  - enabled: 1
+    path: Assets/BetaLevels/Beta_Level_2.unity
+    guid: 457f22c11c0921c48ba3f9e76ac41f2b
+  - enabled: 1
+    path: Assets/BetaLevels/Beta_Level_3.unity
+    guid: 8774101935c314a4d923a780db1e0713
+  - enabled: 1
+    path: Assets/BetaLevels/Beta_Laser_Tutorial.unity
+    guid: ca226874128b739439e50cba798c0c0e
+  - enabled: 1
+    path: Assets/BetaLevels/Beta_Laser_Level.unity
+    guid: 51c6178c93572a44eb0ed9364b71fce9
+  - enabled: 1
+    path: Assets/BetaLevels/Beta_Rotation_Tutorial.unity
+    guid: f7e2c297bbbfc36479939197eb971251
+  - enabled: 1
+    path: Assets/BetaLevels/Beta_Projectile_Tutorial.unity
+    guid: 917e6be1e6d2d9649b03a77c0d79d4d8
+  - enabled: 1
+    path: Assets/BetaLevels/Beta_Projectile_Level.unity
+    guid: 36d677ae0df10c24d8a896e33c1ef879

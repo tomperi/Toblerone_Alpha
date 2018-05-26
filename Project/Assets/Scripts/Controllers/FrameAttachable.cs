@@ -9,7 +9,7 @@ public class FrameAttachable : MonoBehaviour {
         if (other.tag == "Projectile" || other.tag == "Player")
         {
             PlaceObjectUnderParent(other.gameObject);
-            Debug.Log(other.tag + " moved to " + transform.parent.name);
+            //Debug.Log(other.tag + " moved to " + transform.parent.name);
         }
     }
 
@@ -25,7 +25,7 @@ public class FrameAttachable : MonoBehaviour {
     {
         if (other.tag == "Projectile")
         {
-            Debug.Log("bye");
+            //Debug.Log("bye");
             other.transform.parent = null;
         }
     }

@@ -148,33 +148,33 @@ public class GameController : MonoBehaviour
                             Debug.Log("Down Swipe");
                         }
                     }
-                    else
-                    {   //It's a tap as the drag distance is less than 20% of the screen height
-                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                        RaycastHit hit;
+                }
+                else
+                {   //It's a tap as the drag distance is less than 20% of the screen height
+                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                    RaycastHit hit;
 
-                        if (Physics.Raycast(ray, out hit, Mathf.Infinity, floorLayerMask))
+                    if (Physics.Raycast(ray, out hit, 10000f, floorLayerMask))
+                    {
+                        GameObject frame = hit.transform.parent.parent.gameObject;
+
+                        if (frame != null)
                         {
-                            if (touch.phase == TouchPhase.Ended)
+                            RotateFrame(frame);
+                            //frame.transform.Rotate(new Vector3(0f, 90f, 0f));
+                            //Debug.Log("Should rotate " + frame.transform.name);
+                            foreach (Transform transformChild in frame.transform) // Messy, needs to fix later! ~ Amir
                             {
-                                GameObject frame = hit.transform.parent.gameObject;
-
-                                if (frame != null)
+                                if (transformChild.name == "ShadowProjectile(Clone)")
                                 {
-                                    frame.transform.Rotate(new Vector3(0f, 90f, 0f));
-                                    foreach (Transform transformChild in frame.transform) // Messy, needs to fix later! ~ Amir
-                                    {
-                                        if (transformChild.name == "ShadowProjectile(Clone)")
-                                        {
-                                            transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
-                                        }
-                                    }
-                                    StartCoroutine(resetLaser());
+                                    transformChild.gameObject.GetComponent<ProjectileController>().ChangeDirectionOnRotate();
                                 }
                             }
+                            StartCoroutine(resetLaser());
                         }
                     }
                 }
+                
             }
         }
 
