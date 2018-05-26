@@ -289,7 +289,10 @@ public class GameController : MonoBehaviour
                 {
                     player.StopAtPlace();
                 }
-                SoundManager.Instance.toggleZoomSoundAction(true);
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.toggleZoomSoundAction(true);
+                }
                 //soundManager.playZoomOutAction();
                 //Debug.Log("Zoom out");
             }
@@ -297,7 +300,10 @@ public class GameController : MonoBehaviour
             {
                 zoomOutCamera.SetActive(false);
                 isZoomedIn = true;
-                SoundManager.Instance.toggleZoomSoundAction(false);
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.toggleZoomSoundAction(false);
+                }
                 //soundManager.playZoomInAction();
                 //Debug.Log("Zoom in");
             }

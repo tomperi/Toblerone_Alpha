@@ -13,6 +13,7 @@ public class Laser : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3[] linePositions;
 
+    public Material mat;
 
     // Use this for initialization
     void Start()
@@ -24,7 +25,7 @@ public class Laser : MonoBehaviour
         lineRenderer.SetPositions(linePositions);
         isTargetHit = false;
 
-
+        lineRenderer.material = mat;
     }
 
     public void ShootLaser()
