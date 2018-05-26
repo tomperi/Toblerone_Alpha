@@ -15,6 +15,7 @@ public class NewDoor : MonoBehaviour
         obstacle = GetComponent<NavMeshObstacle>();
         openDoorLayerMask = LayerMask.NameToLayer("OpenDoors");
         closedDoorLayerMask = LayerMask.NameToLayer("Laser");
+        setAllChildLayers(closedDoorLayerMask);
     }
     
     void OnTriggerEnter(Collider other)
