@@ -20,12 +20,15 @@ public class SpriteController : MonoBehaviour
 	void Update () {
         if (agent.velocity.x == 0)
         {
-            audioSource.Stop();
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
             animator.SetInteger("Direction", 0);
         }
         else
         {
-            if (!audioSource.isPlaying)
+            if (audioSource != null &&!audioSource.isPlaying)
             {
                 audioSource.Play();
             }
