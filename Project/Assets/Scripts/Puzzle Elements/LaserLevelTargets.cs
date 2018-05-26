@@ -7,23 +7,37 @@ public class LaserLevelTargets : MonoBehaviour {
     private LaserLevelManager manager;
     private bool wasHit = false;
 
-    public Material notHitMaterial;
-    public Material hitMaterial;
+    private GameObject offSprite;
+    private GameObject onSprite;
 
     public bool WasHit { get { return wasHit; } }
 
     // Use this for initialization
     void Start () {
         manager = FindObjectOfType<LaserLevelManager>();
-	}
+        wasHit = false;
+        offSprite = transform.GetChild(0).gameObject;
+        onSprite = transform.GetChild(1).gameObject;
+
+        offSprite.SetActive(true);
+        onSprite.SetActive(false);
+    }
 
     public void OnHitTarget()
     {
         if (!wasHit)
         {
             wasHit = true;
+
+            offSprite.SetActive(false);
+            onSprite.SetActive(true);
+
+            if (onSprite.GetComponent<Animator>() != null)
+            {
+                onSprite.GetComponent<Animator>().Play("ReceiverAnimation");
+            }
+
             manager.markAsHit();
-            GetComponent<Renderer>().material = hitMaterial;
         }
     }
 }
