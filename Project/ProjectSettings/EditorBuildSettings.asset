@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/Alpha_end.unity
     guid: 6cb1471af9760cd49abf0f320590bae4
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Levels/Projectile_Tutorial.unity
     guid: 60dce848084aa9c43a4e9253ecae2df7
+  - enabled: 1
+    path: Assets/_Levels/Projectile_Level_1.unity
+    guid: 371c830847c564547899602a6ff28dbe
