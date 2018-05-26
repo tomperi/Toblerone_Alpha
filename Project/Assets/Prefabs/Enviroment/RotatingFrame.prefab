@@ -124,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4070804471571998}
   m_Layer: 0
-  m_Name: Frame01
+  m_Name: RotatingFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
