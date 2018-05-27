@@ -13,5 +13,9 @@ public class MoveToNextLevelScript : MonoBehaviour {
         {
             SceneManager.LoadScene(nextSceneIndex);
         }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
