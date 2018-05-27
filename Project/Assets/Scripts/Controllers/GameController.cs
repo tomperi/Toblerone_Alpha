@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public bool startZoomedOut;
     public bool isPlayerInLevel;
     private bool runningOnDesktop;
+    private UIManager uiManager;
 
     private bool isZoomedIn;
     public bool IsZoomedIn { get { return isZoomedIn; } }
@@ -37,11 +38,12 @@ public class GameController : MonoBehaviour
 
         dragDistance = Screen.width * 15 / 100; //drag distance is 15% of the screen
         runningOnDesktop = SystemInfo.deviceType == DeviceType.Desktop;
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     void Update()
     {
-        if (!isZoomedIn)
+        if (!isZoomedIn || uiManager.isPause)
         {
             player.StopAtPlace();
         }
@@ -53,7 +55,7 @@ public class GameController : MonoBehaviour
         }
 
         //zoom in or out Mobile
-        if (Input.touchCount == 2)
+        if (Input.touchCount == 2 && !uiManager.isPause)
         {
             // Store both touches.
             Touch touchZero = Input.GetTouch(0);
@@ -101,7 +103,7 @@ public class GameController : MonoBehaviour
         }
 
         //move/rotate frame Mobile
-        if (Input.touchCount == 1 && !isZoomedIn) // user is touching the screen with a single touch
+        if (Input.touchCount == 1 && !isZoomedIn && !uiManager.isPause) // user is touching the screen with a single touch
         {
             Touch touch = Input.GetTouch(0); // get the touch
             if (touch.phase == TouchPhase.Began) //check for the first touch
@@ -179,7 +181,7 @@ public class GameController : MonoBehaviour
         }
 
         //move player mobile
-        if (Input.touchCount == 1 && isZoomedIn)
+        if (Input.touchCount == 1 && isZoomedIn && !uiManager.isPause)
         {
             Touch touch = Input.touches[0];
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
