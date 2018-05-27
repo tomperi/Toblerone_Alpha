@@ -275,7 +275,10 @@ public class GameController : MonoBehaviour
 
         foreach (Animator anim in animator)
         {
-            anim.SetBool("Rotate", true);
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("FrameIdle") || anim.GetCurrentAnimatorStateInfo(0).IsName("UnderIdle"))
+            {
+                anim.SetBool("Rotate", true);
+            }
         }
 
         //Animation animation = i_Frame.GetComponent<Animation>();
