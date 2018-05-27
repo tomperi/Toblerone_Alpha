@@ -485,6 +485,68 @@ MonoBehaviour:
     FarClipPlane: 5000
     Dutch: 0
   m_ComponentOwner: {fileID: 1012978562}
+--- !u!1001 &479183322
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1645593745}
+    m_Modifications:
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -37.728165
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.7879028
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 18.615465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114460491406863174, guid: aa02b12ca8c187647b09a9091b658d0b,
+        type: 2}
+      propertyPath: PauseButton
+      value: 
+      objectReference: {fileID: 1740870988}
+    - target: {fileID: 114460491406863174, guid: aa02b12ca8c187647b09a9091b658d0b,
+        type: 2}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1051562299}
+    - target: {fileID: 114460491406863174, guid: aa02b12ca8c187647b09a9091b658d0b,
+        type: 2}
+      propertyPath: ConfirmRestart
+      value: 
+      objectReference: {fileID: 1684134487}
+    - target: {fileID: 114460491406863174, guid: aa02b12ca8c187647b09a9091b658d0b,
+        type: 2}
+      propertyPath: ConfirmExit
+      value: 
+      objectReference: {fileID: 45856340}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: aa02b12ca8c187647b09a9091b658d0b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &640645357
 Prefab:
   m_ObjectHideFlags: 0
@@ -1425,51 +1487,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 478cb9beef1339749bdf8ee7664ee10f, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1445531831
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1445531832}
-  - component: {fileID: 1445531833}
-  m_Layer: 0
-  m_Name: UI Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1445531832
+--- !u!4 &1445531832 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1445531831}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.728165, y: -2.7879028, z: 18.615465}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1645593745}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1445531833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1445531831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 140f300b9244d0147805288dae805467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPause: 0
-  PauseButton: {fileID: 1740870988}
-  PauseMenu: {fileID: 1051562299}
-  ConfirmRestart: {fileID: 1684134487}
-  ConfirmExit: {fileID: 45856340}
+  m_PrefabParentObject: {fileID: 4116217811578780, guid: aa02b12ca8c187647b09a9091b658d0b,
+    type: 2}
+  m_PrefabInternal: {fileID: 479183322}
 --- !u!1 &1474528078
 GameObject:
   m_ObjectHideFlags: 0
